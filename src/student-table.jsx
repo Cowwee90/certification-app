@@ -7,7 +7,7 @@ export function StudentTable() {
     const fetchData = async () => {
       try {
         const headers = {
-          "User-Agent": "testingAgent",
+          "User-Agent": "testingAgent", // not necessary
         };
         const response = await fetch(
           "https://certification-api.glitch.me/students",
@@ -53,7 +53,7 @@ function showJsonInTable(JsonData) {
 
   return (
     <div>
-      <table class="table table-striped">
+      <table>
         <thead>
           <tr>
             <th>id</th>
