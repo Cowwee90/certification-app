@@ -34,18 +34,19 @@ export function Form() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
+      <h2>Add New Student</h2>
         <input
           type="text"
           value={name}
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
-        />
+        /><br/>
         <input
           type="date"
           value={birthday}
           placeholder="Birthday"
           onChange={(e) => setBirthday(e.target.value)}
-        />
+        /><br/>
 
         <button type="submit">Add Student</button>
       </form>

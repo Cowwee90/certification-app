@@ -26,8 +26,8 @@ export function StudentTable() {
   }, []);
 
   return (
-    <div>
-      <h1>Fetching JSON with React</h1>
+    <div class="student-table">
+      <h1>All Students</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
         showJsonInTable(data)

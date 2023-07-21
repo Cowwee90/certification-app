@@ -33,3 +33,38 @@ body::-webkit-scrollbar-thumb {
         background-position: 0% 50%;
     }
 }
+
+form {
+    width: 50%;
+    margin: 10px auto;
+    text-align:center;
+    padding: 20px;
+    border: 2px solid teal;
+    border-radius: 15px;
+}
+
+input {
+    height: 20px;
+    padding: 4px 4px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid green;
+    margin: 5px;
+}
+
+.student-table {text-align:center;}
+
+thead{
+  border:2px solid black;
+  font-size:15px;
+}
+
+tbody td {
+  padding: 10px;
+}
+
+tbody tr:nth-child(odd) {
+  border:2px solid black;
+  background-color: lavender;
+  color: black;
+}
