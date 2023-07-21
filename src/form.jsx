@@ -34,7 +34,7 @@ export function Form() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-      <h2>Add New Student</h2>
+      <h3>Add New Student</h3>
         <input
           type="text"
           value={name}
