@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencil } from '@fortawesome/free-solid-svg-icons'
 
 export function StudentTable() {
   const [data, setData] = useState(null);
@@ -47,6 +49,7 @@ function showJsonInTable(JsonData) {
         <td>{info.birthday}</td>
         <td>{info.highest_level}</td>
         <td>{info.best_grade}</td>
+        <td><a href="google.com"><FontAwesomeIcon icon={faPencil} /></a></td>
       </tr>
     );
   });
@@ -57,10 +60,11 @@ function showJsonInTable(JsonData) {
         <thead>
           <tr>
             <th>id</th>
-            <th>sname</th>
-            <th>birthday</th>
-            <th>highest_level</th>
-            <th>best_grade</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Level</th>
+            <th>Best Grade Attained</th>
+            <th>Edit Record</th>
           </tr>
         </thead>
         <tbody>{DisplayData}</tbody>

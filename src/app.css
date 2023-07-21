@@ -54,10 +54,8 @@ input {
 
 .student-table {text-align:center;}
 
-thead{
-  border:2px solid black;
-  font-size:15px;
-}
+th{font-size:16px;
+border-bottom: 2px solid black;}
 
 tbody td {
   padding: 10px;
