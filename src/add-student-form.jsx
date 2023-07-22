@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./app.css";
 
-
 export function Form() {
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
@@ -33,25 +32,26 @@ export function Form() {
     }
   };
 
-
   return (
     <div class="addstudent">
       <form onSubmit={handleSubmit}>
-      <h3>Add New Student</h3>
+        <h3>Add New Student</h3>
         <input
           type="text"
           value={name}
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
-        /><br/>
+        />
+        <br />
         <input
           type="date"
           value={birthday}
           placeholder="Birthday"
           onChange={(e) => setBirthday(e.target.value)}
-        /><br/>
+        />
+        <br />
         <button type="submit">Add Student</button>
       </form>
     </div>
-  )
+  );
 }

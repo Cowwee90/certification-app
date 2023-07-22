@@ -43,7 +43,7 @@ export function StudentTable() {
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
     return (
-      <tr>
+      <tr key={info.id}>
         <td>{info.id}</td>
         <td>{info.sname}</td>
         <td>{info.birthday}</td>

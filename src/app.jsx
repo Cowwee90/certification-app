@@ -2,13 +2,14 @@
 import { StudentTable } from "./student-table.jsx";
 import { EventTable } from "./event-table.jsx";
 import { TestResultTable } from "./test-result-table.jsx";
-import { Form } from "./form.jsx";
-import { Button } from "./show-form.jsx";
+import { AddStudentButton } from "./show-form.jsx";
+import { TestResultForm } from "./test-result-form.jsx";
 
 const App = () => {
   return (
     <div>
-      <Button />
+      <AddStudentButton />
+      <TestResultForm />
       <StudentTable />
       <EventTable />
       <TestResultTable />
