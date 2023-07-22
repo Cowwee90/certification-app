@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-export function StudentTable() {
+export function TestResultTable() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export function StudentTable() {
           "User-Agent": "testingAgent", // not necessary
         };
         const response = await fetch(
-          "https://certification-api.glitch.me/students",
+          "https://certification-api.glitch.me/testresults",
           {
             headers,
           }
@@ -29,7 +29,7 @@ export function StudentTable() {
 
   return (
     <div class="data-table">
-      <h1>All Students</h1>
+      <h1>All Test Results</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
         showJsonInTable(data)
@@ -45,10 +45,18 @@ function showJsonInTable(JsonData) {
     return (
       <tr>
         <td>{info.id}</td>
-        <td>{info.sname}</td>
-        <td>{info.birthday}</td>
-        <td>{info.highest_level}</td>
-        <td>{info.best_grade}</td>
+        <td>{info.student_id}</td>
+        <td>{info.event_id}</td>
+        <td>{info.solve_1}</td>
+        <td>{info.solve_2}</td>
+        <td>{info.solve_3}</td>
+        <td>{info.solve_4}</td>
+        <td>{info.solve_5}</td>
+        <td>{info.average_of_5}</td>
+        <td>{info.level_attempted}</td>
+        <td>{info.level_achieved}</td>
+        <td>{info.grade_achieved}</td>
+        <td>{info.name_to_be_printed}</td>
         <td>
           <a href="google.com">
             <FontAwesomeIcon icon={faPencil} />
@@ -60,18 +68,22 @@ function showJsonInTable(JsonData) {
 
   return (
     <div>
-      <form action="https://certification-api.glitch.me/students/search_query">
-        <input type="search" id="search" placeholder="Search Students" />
-        <input type="submit" />
-      </form>
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Highest Level</th>
-            <th>Best Grade</th>
+            <th>StudentID</th>
+            <th>EventID</th>
+            <th>Solve 1</th>
+            <th>Solve 2</th>
+            <th>Solve 3</th>
+            <th>Solve 4</th>
+            <th>Solve 5</th>
+            <th>Average of 5</th>
+            <th>Level Attempted</th>
+            <th>Level Achieved</th>
+            <th>Grade Achieved</th>
+            <th>Name to be Printed</th>
             <th>Edit Record</th>
           </tr>
         </thead>

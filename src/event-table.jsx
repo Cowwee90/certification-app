@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
-export function StudentTable() {
+export function EventTable() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export function StudentTable() {
           "User-Agent": "testingAgent", // not necessary
         };
         const response = await fetch(
-          "https://certification-api.glitch.me/students",
+          "https://certification-api.glitch.me/events",
           {
             headers,
           }
@@ -29,7 +29,7 @@ export function StudentTable() {
 
   return (
     <div class="data-table">
-      <h1>All Students</h1>
+      <h1>All Events</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
         showJsonInTable(data)
@@ -45,10 +45,8 @@ function showJsonInTable(JsonData) {
     return (
       <tr>
         <td>{info.id}</td>
-        <td>{info.sname}</td>
-        <td>{info.birthday}</td>
-        <td>{info.highest_level}</td>
-        <td>{info.best_grade}</td>
+        <td>{info.ename}</td>
+        <td>{info.edate}</td>
         <td>
           <a href="google.com">
             <FontAwesomeIcon icon={faPencil} />
@@ -60,18 +58,12 @@ function showJsonInTable(JsonData) {
 
   return (
     <div>
-      <form action="https://certification-api.glitch.me/students/search_query">
-        <input type="search" id="search" placeholder="Search Students" />
-        <input type="submit" />
-      </form>
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Highest Level</th>
-            <th>Best Grade</th>
+            <th>Date</th>
             <th>Edit Record</th>
           </tr>
         </thead>

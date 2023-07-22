@@ -1,4 +1,4 @@
-export function SearchedTable() {
+export function SearchTable() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -44,7 +44,12 @@ function showJsonInTable(JsonData) {
         <td>{info.birthday}</td>
         <td>{info.highest_level}</td>
         <td>{info.best_grade}</td>
-        <td><a href="anse1.com"><FontAwesomeIcon icon={faPencil} /></a></td>
+        <td>
+          <a href="anse1.com">
+            <FontAwesomeIcon icon={faPencil} />
+          </a>
+        </td>
       </tr>
     );
   });
+}
