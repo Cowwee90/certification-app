@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencil } from '@fortawesome/free-solid-svg-icons'
-
-export function StudentTable() {
+export function SearchedTable() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -48,27 +44,7 @@ function showJsonInTable(JsonData) {
         <td>{info.birthday}</td>
         <td>{info.highest_level}</td>
         <td>{info.best_grade}</td>
-        <td><a href="google.com"><FontAwesomeIcon icon={faPencil} /></a></td>
+        <td><a href="anse1.com"><FontAwesomeIcon icon={faPencil} /></a></td>
       </tr>
     );
   });
-
-  return (
-    <div>
-    <form action="https://certification-api.glitch.me/students/search_query:"><input type="search" id="search" placeholder="Search Students"/><input type="submit" /></form>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Level</th>
-            <th>Best Grade Attained</th>
-            <th>Edit Record</th>
-          </tr>
-        </thead>
-        <tbody>{DisplayData}</tbody>
-      </table>
-    </div>
-  );
-}

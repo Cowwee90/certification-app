@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./app.css";
+
 
 export function Form() {
   const [name, setName] = useState("");
@@ -31,8 +33,9 @@ export function Form() {
     }
   };
 
+
   return (
-    <div className="App">
+    <div class="addstudent">
       <form onSubmit={handleSubmit}>
       <h3>Add New Student</h3>
         <input
@@ -47,9 +50,8 @@ export function Form() {
           placeholder="Birthday"
           onChange={(e) => setBirthday(e.target.value)}
         /><br/>
-
         <button type="submit">Add Student</button>
       </form>
     </div>
-  );
+  )
 }

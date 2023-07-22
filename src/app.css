@@ -1,8 +1,5 @@
 body {
-    background: linear-gradient(110deg, aquamarine, mistyrose, lightsteelblue, honeydew, lemonchiffon, lightpink);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    height: 100vh;
+    background: white;
 }
 
 body::-webkit-scrollbar {
@@ -19,27 +16,19 @@ body::-webkit-scrollbar-thumb {
   border: 2px solid white;  /* creates padding around scroll thumb */
 }
 
+#search {width: 45vw;
+  height:35px;
+  font-size: 20px;
+padding-left: 15px;}
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
 
-    50% {
-        background-position: 100% 50%;
-    }
 
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 form {
     width: 50%;
     margin: 10px auto;
     text-align:center;
     padding: 12px;
-    border: 2px solid teal;
     border-radius: 15px;
 }
 
