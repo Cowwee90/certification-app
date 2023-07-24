@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { SearchBar} from "./searchbar.jsx";
+import { SearchResultsList} from "./search-name-dropdown.jsx";
 
 export function TestResultForm() {
   const [query, setQuery] = useState("");
@@ -28,38 +30,10 @@ export function TestResultForm() {
     }
   };
 
-  const onChange = (e) => {
-    setQuery(e.target.value);
-    setResults(e.target.value);
-  };
-
-  // const data = results.map((student) => {
-  //   return (
-  //     <tr key={student.id}>
-  //       <td>{student.id}</td>
-  //       <td>{student.sname}</td>
-  //       <td>{student.birthday}</td>
-  //     </tr>
-  //   );
-  // });
-
   return (
-    <div>
-      <input
-        type="search"
-        value={query}
-        onChange={onChange}
-        placeholder="Search Students"
-      />
-      {/* <button onClick={handleSearch}>Search</button> */}
-      <div>
-        {allResults.map((item) => (
-          <div>{item.sname}</div>
-        ))}
-      </div>
-      {/* <table>
-        <tbody>{data}</tbody>
-      </table> */}
-    </div>
+<div className="">
+<SearchBar  setResults= {setResults} />
+<SearchResultsList results= {results}/>
+</div>
   );
-}
+};

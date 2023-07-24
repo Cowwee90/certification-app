@@ -1,9 +1,10 @@
 body {
     background: white;
+    font-family: Helvetica, sans-serif;
 }
 
 body::-webkit-scrollbar {
-  width: 25px;               /* width of the entire scrollbar */
+  width: 20px;               /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-track {
@@ -16,30 +17,63 @@ body::-webkit-scrollbar-thumb {
   border: 2px solid white;  /* creates padding around scroll thumb */
 }
 
-#search {width: 45vw;
-  height:35px;
-  font-size: 20px;
-padding-left: 15px;}
+#searchbar {
+  width: 40vw;
+  height:30px;
+  font-size: 1.25rem;
+  border-radius: 10px;
+  padding-left: 15px;
+margin-right: 7px;}
 
+  #searchbar:hover {
+    box-shadow: 0 0 5px limegreen;
+  }
 
+#search-icon {
+  color: royalblue;
+}
 
+.searchspan {
+  display: flex;
+  align-items: center;
+  margin: auto;}
+
+.searchbar-wrap {
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 0 8px grey;
+  display: flex;
+  align-items: center;
+}
+
+.results-list {
+  width:100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.search-result {
+  padding: 10px 20px;
+}
+
+.search-result:hover{
+  background-color: pink;
+}
 
 form {
     width: 50%;
-    margin: 10px auto;
-    text-align:center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
     padding: 12px;
     border-radius: 15px;
 }
 
-input {
-    height: 20px;
-    padding: 4px 4px;
-    font-size: 15px;
-    border-radius: 5px;
-    border: 1px solid green;
-    margin: 5px;
-}
 
 .data-table {text-align:center;}
 

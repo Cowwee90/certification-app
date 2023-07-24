@@ -60,10 +60,6 @@ function showJsonInTable(JsonData) {
 
   return (
     <div>
-      <form action="https://certification-api.glitch.me/students/search_query">
-        <input type="search" id="search" placeholder="Search Students" />
-        <input type="submit" />
-      </form>
       <table>
         <thead>
           <tr>
