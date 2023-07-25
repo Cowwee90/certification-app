@@ -5,10 +5,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 export function TestResultForm() {
   const [results, setResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-
-  const onSearch = (searchTerm) => {
-    console.log("search", searchTerm);
-  };
+  const [studID, setStudID] = useState("");
+  const [eventID, setEventID] = useState("");
 
   const fetchData = (value) => {
     fetch("http://certification-api.glitch.me/students")
@@ -19,6 +17,7 @@ export function TestResultForm() {
           return (
             value &&
             user &&
+            user.id &&
             user.birthday &&
             user.sname &&
             user.sname.toLowerCase().includes(value)
@@ -32,10 +31,10 @@ export function TestResultForm() {
     setSearchInput(value);
     fetchData(value);
   };
+
   return (
-    <div className="">
+    <>
       <div className="searchbar-wrap">
-        <span className="searchspan">
           <input
             type="text"
             id="searchbar"
@@ -43,24 +42,46 @@ export function TestResultForm() {
             onChange={(e) => handleChange(e.target.value)}
             placeholder="Search Student's Records"
           />
-          <FontAwesomeIcon icon={faSearch} id="search-icon" />
-          <button
-            onClick={() => onSearch(searchInput)}
-            value="Search"
-            className="searchButton"
+          <input type="hidden" value={studID} />
+            <input type="hidden" value={eventID} />
+
+          <input
+            type="text"
+            id="inputTiming"
+            placeholder="Solve 1"
           />
-        </span>
-      </div>
+          <input
+            type="text"
+            id="inputTiming"
+            placeholder="Solve 2"
+          />
+          <input
+            type="text"
+            id="inputTiming"
+            placeholder="Solve 3"
+          />
+          <input
+            type="text"
+            id="inputTiming"
+            placeholder="Solve 4"
+          />
+          <input
+            type="text"
+            id="inputTiming"
+            placeholder="Solve 5"
+          />
+ </div>
+
       {results.map((results, id) => {
         return (
           <div
             className="search-result"
-            onClick={() => setSearchInput(results.sname)}
+            onClick={() => {setSearchInput(results.sname); setStudID(results.id)}}
           >
             {results.sname} <br /> {results.birthday}{" "}
           </div>
         );
       })}
-    </div>
-  );
+ </>
+);
 }
