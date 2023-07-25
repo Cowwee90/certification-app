@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+
 export const SearchBar = ({ setResults }) => {
-  const [searchInput, setInput] = useState("");
+  const onSearch = (searchTerm) => {
+   console.log("search", searchTerm);
+   };
+
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchData = (value) => {
     fetch("http://certification-api.glitch.me/students")
@@ -14,6 +19,7 @@ export const SearchBar = ({ setResults }) => {
           return (
             value &&
             user &&
+            user.birthday &&
             user.sname &&
             user.sname.toLowerCase().includes(value)
           );
@@ -23,7 +29,7 @@ export const SearchBar = ({ setResults }) => {
   };
 
   const handleChange = (value) => {
-    setInput(value);
+    setSearchInput(value);
     fetchData(value);
   };
 
@@ -38,7 +44,7 @@ export const SearchBar = ({ setResults }) => {
           placeholder="Search Student's Records"
         />
         <FontAwesomeIcon icon={faSearch} id="search-icon" />
-      </span>
+      <button onClick={() => onSearch(searchInput)} value="Search" className="searchButton"/></span>
     </div>
   );
 };

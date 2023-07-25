@@ -29,6 +29,8 @@ margin-right: 7px;}
     box-shadow: 0 0 5px limegreen;
   }
 
+
+
 #search-icon {
   color: royalblue;
 }
@@ -62,9 +64,14 @@ margin-right: 7px;}
 }
 
 .search-result:hover{
-  background-color: pink;
+  background-color: lavender;
 }
 
+.searchButton {
+height:20px;
+width:50px;
+color:royalblue;
+}
 form {
     width: 50%;
     margin: auto;
