@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { SearchBar} from "./searchbar.jsx";
-import { SearchResultsList} from "./search-name-dropdown.jsx";
+import { SearchBar } from "./searchbar.jsx";
+import { SearchResultsList } from "./search-name-dropdown.jsx";
 
 export function TestResultForm() {
   const [query, setQuery] = useState("");
@@ -31,9 +31,9 @@ export function TestResultForm() {
   };
 
   return (
-<div className="">
-<SearchBar  setResults= {setResults} />
-<SearchResultsList results= {results}/>
-</div>
+    <div className="">
+      <SearchBar setResults={setResults} />
+      <SearchResultsList results={results} />
+    </div>
   );
-};
+}
