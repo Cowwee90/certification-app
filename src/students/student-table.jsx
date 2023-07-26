@@ -28,7 +28,7 @@ export function StudentTable() {
   }, []);
 
   return (
-    <div class="data-table">
+    <div className="data-table">
       <h1>All Students</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>

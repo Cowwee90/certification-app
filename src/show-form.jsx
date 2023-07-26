@@ -13,7 +13,7 @@ export function AddStudentButton() {
 
   return (
     <div>
-      <button class="button" onClick={handleClick}>
+      <button className="button" onClick={handleClick}>
         Add Student
       </button>
 

@@ -28,7 +28,7 @@ export function TestResultTable() {
   }, []);
 
   return (
-    <div class="data-table">
+    <div className="data-table">
       <h1>All Test Results</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
@@ -43,7 +43,7 @@ export function TestResultTable() {
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
     return (
-      <tr>
+      <tr key={info.id}>
         <td>{info.id}</td>
         <td>{info.student_id}</td>
         <td>{info.event_id}</td>
