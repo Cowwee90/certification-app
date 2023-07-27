@@ -123,6 +123,12 @@ export function TestResultForm() {
     setIsSelected(true);
   };
 
+  useEffect(() => {
+    if (searchInput === "") {
+      setStudID("");
+    }
+  }, [searchInput]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const headers = {
