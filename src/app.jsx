@@ -7,6 +7,8 @@ import Home from "./pages/Home.jsx";
 import TestResults from "./pages/TestResults";
 import Students from "./pages/Students.jsx";
 import Events from "./pages/Events.jsx";
+import EventsUpcoming from "./pages/EventsUpcoming.jsx";
+import EventsPast from "./pages/EventsPast.jsx";
 import NoPage from "./pages/NoPage.jsx";
 
 export default function App() {
@@ -18,6 +20,8 @@ export default function App() {
           <Route path="testresults" element={<TestResults />} />
           <Route path="students" element={<Students />} />
           <Route path="events" element={<Events />} />
+          <Route path="events/upcoming" element={<EventsUpcoming />} />
+          <Route path="events/past" element={<EventsPast />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

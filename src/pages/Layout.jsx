@@ -17,6 +17,12 @@ const Layout = () => {
           <li>
             <Link to="/events">Events</Link>
           </li>
+          <li>
+            <Link to="/events/upcoming">Upcoming Events</Link>
+          </li>
+          <li>
+            <Link to="/events/past">Past Events</Link>
+          </li>
         </ul>
       </nav>
 
