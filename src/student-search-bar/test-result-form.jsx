@@ -14,7 +14,8 @@ export function TestResultForm() {
   const [avg, setAvg] = useState("DNF");
   const [levelAchieved, setLevelAchieved] = useState("");
   const [gradeAchieved, setGradeAchieved] = useState("");
-  const [inputValue, setInputValue] = useState('');
+  const [levelAttempted, setLevelAttempted]= useState('');
+  const [printedName, setPrintedName]= useState('');
 
   useEffect(() => {
     const fetchStudentData = async () => {
@@ -73,7 +74,6 @@ export function TestResultForm() {
     } else {
       setAvg("0.00")
     }
-      console.log(solves)
   }, [solves]);
 
   useEffect(() => {
@@ -117,9 +117,39 @@ export function TestResultForm() {
     setStudID(searchedID);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(avg, levelAchieved, gradeAchieved);
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    try {
+      const res = await fetch("https://certification-api.glitch.me/testresults", {
+        headers: headers,
+        method: "POST",
+        body: JSON.stringify({
+          student_id: studID,
+          event_id:eventID,
+          solve_1: solves[1],
+          solve_2:solves[2],
+          solve_3: solves[3],
+          solve_4: solves[4],
+          solve_5: solves[5],
+          average_of_5: avg,
+          level_attempted: levelAttempted,
+          level_achieved: levelAchieved,
+          grade_achieved: gradeAchieved,
+          name_to_be_printed:printedName,
+        }),
+      });
+      await res.json();
+      if (res.status === 201) {
+        console.log("success");
+      } else {
+        console.log("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -131,9 +161,10 @@ export function TestResultForm() {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Enter name"
+          autoComplete="off"
         />
-        <input type="text" value={studID} readOnly />
-        <input type="text" value={eventID} readOnly />
+        <input type="hidden" value={studID} readOnly />
+        <input type="hidden" value={eventID} readOnly />
 
         <input
           type="text"
@@ -186,9 +217,11 @@ export function TestResultForm() {
           type="number"
           id="test-result-form-field"
           placeholder="Level attempted"
+          value={levelAttempted}
           min="1"
           max="10"
           autoComplete="off"
+          onChange={(e) => setLevelAttempted(e.target.value)}
         />
         <input
           type="text"
@@ -207,9 +240,11 @@ export function TestResultForm() {
         <input
           type="text"
           id="test-result-form-field"
+          value={printedName}
           placeholder="Name to be printed"
+          onChange={(e) => setPrintedName(e.target.value)}
         />
-        <button type="submit">Add Result</button>
+        <button type="submit">Add Record</button>
       </form>
 
       <div className="dropdown">
