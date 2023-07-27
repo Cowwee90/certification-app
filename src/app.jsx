@@ -1,20 +1,22 @@
-//import React, { useEffect, useState } from "react";
-import { StudentTable } from "./students/student-table.jsx";
-import { EventTable } from "./events/event-table.jsx";
-import { TestResultTable } from "./test-results/test-result-table.jsx";
-import { AddStudentButton } from "./show-form.jsx";
-import { TestResultForm } from "./student-search-bar/test-result-form.jsx";
+// importing components from react-router-dom package
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const App = () => {
+// import Home component
+import Layout from "./pages/Layout";
+import Home from "./pages/Home.jsx";
+import Students from "./pages/Students.jsx";
+import NoPage from "./pages/NoPage.jsx";
+
+export default function App() {
   return (
-    <div>
-      <AddStudentButton />
-      <TestResultForm />
-      <StudentTable />
-      <EventTable />
-      <TestResultTable />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="students" element={<Students />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
-};
-
-export default App;
+}

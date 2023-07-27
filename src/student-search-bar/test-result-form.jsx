@@ -14,8 +14,8 @@ export function TestResultForm() {
   const [avg, setAvg] = useState("DNF");
   const [levelAchieved, setLevelAchieved] = useState("");
   const [gradeAchieved, setGradeAchieved] = useState("");
-  const [levelAttempted, setLevelAttempted]= useState('');
-  const [printedName, setPrintedName]= useState('');
+  const [levelAttempted, setLevelAttempted] = useState("");
+  const [printedName, setPrintedName] = useState("");
 
   useEffect(() => {
     const fetchStudentData = async () => {
@@ -35,8 +35,7 @@ export function TestResultForm() {
   }, []);
 
   function setSolvesWrapper(num, time) {
-
-    const restrictedTime = time.replace(/[^DNFdnf0-9.]/g, '');
+    const restrictedTime = time.replace(/[^DNFdnf0-9.]/g, "");
 
     setSolves((currentSolves) => {
       return { ...currentSolves, [num]: restrictedTime }; // time could be a string i.e. "DNF"
@@ -48,7 +47,7 @@ export function TestResultForm() {
     let sum = 0;
     let min = 1000;
     let max = -1;
-    let count = 0
+    let count = 0;
 
     for (const key in solves) {
       const curr = solves[key];
@@ -72,12 +71,13 @@ export function TestResultForm() {
         setAvg(((sum - max - min) / 3).toFixed(2));
       }
     } else {
-      setAvg("0.00")
+      setAvg("");
     }
+    console.log(solves);
   }, [solves]);
 
   useEffect(() => {
-    if (avg === "DNF") setLevelAchieved("");
+    if (avg === "DNF" || avg === "") setLevelAchieved("");
     else if (avg > 180) setLevelAchieved("Failed test");
     else if (120 < avg && avg <= 180) setLevelAchieved(1);
     else if (90 < avg && avg <= 120) setLevelAchieved(2);
@@ -123,24 +123,27 @@ export function TestResultForm() {
       "Content-Type": "application/json",
     };
     try {
-      const res = await fetch("https://certification-api.glitch.me/testresults", {
-        headers: headers,
-        method: "POST",
-        body: JSON.stringify({
-          student_id: studID,
-          event_id:eventID,
-          solve_1: solves[1],
-          solve_2:solves[2],
-          solve_3: solves[3],
-          solve_4: solves[4],
-          solve_5: solves[5],
-          average_of_5: avg,
-          level_attempted: levelAttempted,
-          level_achieved: levelAchieved,
-          grade_achieved: gradeAchieved,
-          name_to_be_printed:printedName,
-        }),
-      });
+      const res = await fetch(
+        "https://certification-api.glitch.me/testresults",
+        {
+          headers: headers,
+          method: "POST",
+          body: JSON.stringify({
+            student_id: studID,
+            event_id: eventID,
+            solve_1: solves[1],
+            solve_2: solves[2],
+            solve_3: solves[3],
+            solve_4: solves[4],
+            solve_5: solves[5],
+            average_of_5: avg,
+            level_attempted: levelAttempted,
+            level_achieved: levelAchieved,
+            grade_achieved: gradeAchieved,
+            name_to_be_printed: printedName,
+          }),
+        }
+      );
       await res.json();
       if (res.status === 201) {
         console.log("success");
