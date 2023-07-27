@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export function StudentTable() {
   const [data, setData] = useState(null);
@@ -27,6 +27,13 @@ export function StudentTable() {
     fetchData();
   }, []);
 
+  function deleteUser(id) {
+    fetch(`https://certification-api.glitch.me/students/${id}`, {
+      method: "DELETE",
+    })
+      .then(response => response.json())
+      }
+
   return (
     <div className="data-table">
       <h1>All Students</h1>
@@ -50,9 +57,8 @@ function showJsonInTable(JsonData) {
         <td>{info.highest_level}</td>
         <td>{info.best_grade}</td>
         <td>
-          <a href="google.com">
-            <FontAwesomeIcon icon={faPencil} />
-          </a>
+        <a onClick={() => deleteUser(info.id)}>
+          <FontAwesomeIcon icon={faTrash} /></a>
         </td>
       </tr>
     );
@@ -68,7 +74,7 @@ function showJsonInTable(JsonData) {
             <th>Date of Birth</th>
             <th>Highest Level</th>
             <th>Best Grade</th>
-            <th>Edit Record</th>
+            <th>Delete Record</th>
           </tr>
         </thead>
         <tbody>{DisplayData}</tbody>

@@ -153,9 +153,9 @@ export function TestResultForm() {
       );
       await res.json();
       if (res.status === 201) {
-        console.log("success");
+        alert("success");
       } else {
-        console.log("Some error occured");
+        alert("Some error occured");
       }
     } catch (err) {
       console.log(err);

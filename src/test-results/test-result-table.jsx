@@ -41,7 +41,7 @@ export function TestResultTable() {
   );
 }
 
-const deleteUser = id => {
+const deleteResult = id => {
   fetch(`https://certification-api.glitch.me/testresults/${id}`, {
     method: "DELETE",
   })
@@ -66,7 +66,7 @@ function showJsonInTable(JsonData) {
         <td>{info.grade_achieved}</td>
         <td>{info.name_to_be_printed}</td>
         <td>
-          <a onClick={() => deleteUser(info.id)}>
+          <a onClick={() => deleteResult(info.id)}>
             <FontAwesomeIcon icon={faTrash} /></a>
         </td>
       </tr>
