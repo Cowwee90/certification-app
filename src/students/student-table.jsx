@@ -27,13 +27,6 @@ export function StudentTable() {
     fetchData();
   }, []);
 
-  function deleteUser(id) {
-    fetch(`https://certification-api.glitch.me/students/${id}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-      }
-
   return (
     <div className="data-table">
       <h1>All Students</h1>
@@ -47,6 +40,12 @@ export function StudentTable() {
   );
 }
 
+function deleteUser(id) {
+  fetch(`https://certification-api.glitch.me/students/${id}`, {
+    method: "DELETE",
+  }).then((response) => response.json());
+}
+
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
     return (
@@ -57,8 +56,9 @@ function showJsonInTable(JsonData) {
         <td>{info.highest_level}</td>
         <td>{info.best_grade}</td>
         <td>
-        <a onClick={() => deleteUser(info.id)}>
-          <FontAwesomeIcon icon={faTrash} /></a>
+          <a onClick={() => deleteUser(info.id)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </a>
         </td>
       </tr>
     );

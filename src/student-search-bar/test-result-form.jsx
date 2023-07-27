@@ -11,7 +11,7 @@ export function TestResultForm() {
   const [studID, setStudID] = useState("");
   const [eventID, setEventID] = useState(""); // find where it's used
   const [students, setStudents] = useState([]);
-  const [solves, setSolves] = useState([]);
+  const [solves, setSolves] = useState({ 1: "", 2: "", 3: "", 4: "", 5: "" });
   const [avg, setAvg] = useState("DNF");
   const [levelAchieved, setLevelAchieved] = useState("");
   const [gradeAchieved, setGradeAchieved] = useState("");
@@ -26,7 +26,7 @@ export function TestResultForm() {
         );
         const jsonData = await response.json();
         setStudents(jsonData);
-        setEventID(1); // TODO: remove
+        setEventID(3); // TODO: remove
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -43,9 +43,9 @@ export function TestResultForm() {
     });
   }
 
-  function searchBarOnChange(e){
+  function searchBarOnChange(e) {
     setIsSelected(false);
-    setSearchInput(e.target.value)
+    setSearchInput(e.target.value);
   }
 
   useEffect(() => {
@@ -79,7 +79,6 @@ export function TestResultForm() {
     } else {
       setAvg("");
     }
-    console.log(solves);
   }, [solves]);
 
   useEffect(() => {
@@ -169,7 +168,7 @@ export function TestResultForm() {
           type="text"
           id="searchbar"
           value={searchInput}
-          onChange={(e)=>searchBarOnChange(e)}
+          onChange={(e) => searchBarOnChange(e)}
           placeholder="Enter name"
           autoComplete="off"
         />
