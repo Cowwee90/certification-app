@@ -265,6 +265,7 @@ export function TestResultForm() {
 
             return (
               !isSelected &&
+              searchInput &&
               storedNameToLower.includes(searchInputToLower) &&
               searchInputToLower !== storedNameToLower
             );
