@@ -15,8 +15,6 @@ export function TestResultForm() {
   const [levelAchieved, setLevelAchieved] = useState("");
   const [gradeAchieved, setGradeAchieved] = useState("");
 
-  const FAIL = -1;
-
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
