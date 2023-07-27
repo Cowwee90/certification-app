@@ -40,10 +40,15 @@ export function StudentTable() {
   );
 }
 
-function deleteUser(id) {
-  fetch(`https://certification-api.glitch.me/students/${id}`, {
+const deleteStudent = async (id) => {
+  const res = await fetch(`https://certification-api.glitch.me/students/${id}`, {
     method: "DELETE",
-  }).then((response) => response.json());
+  })
+  if (res.status === 200) {
+    alert("Successfully deleted event");
+  } else {
+    console.log(res.status);
+  }
 }
 
 function showJsonInTable(JsonData) {
@@ -56,7 +61,7 @@ function showJsonInTable(JsonData) {
         <td>{info.highest_level}</td>
         <td>{info.best_grade}</td>
         <td>
-          <a onClick={() => deleteUser(info.id)}>
+          <a onClick={() => deleteStudent(info.id)}>
             <FontAwesomeIcon icon={faTrash} />
           </a>
         </td>

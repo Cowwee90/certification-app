@@ -40,6 +40,18 @@ export function EventTable() {
   );
 }
 
+const deleteEvent = async (id) => {
+  const res = await fetch(`https://certification-api.glitch.me/events/${id}`, {
+    method: "DELETE",
+  })
+  if (res.status === 200) {
+    alert("Successfully deleted event");
+  } else {
+    console.log(res.status);
+  }
+}
+
+
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
     return (
@@ -48,7 +60,7 @@ function showJsonInTable(JsonData) {
         <td>{info.ename}</td>
         <td>{info.edate}</td>
         <td>
-          <a href="google.com">
+          <a onClick={() => deleteEvent(info.id)}>
             <FontAwesomeIcon icon={faTrash} />
           </a>
         </td>

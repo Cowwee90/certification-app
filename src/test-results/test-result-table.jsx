@@ -41,12 +41,16 @@ export function TestResultTable() {
   );
 }
 
-const deleteResult = id => {
-  fetch(`https://certification-api.glitch.me/testresults/${id}`, {
+const deleteResult = async (id) => {
+  const res = await fetch(`https://certification-api.glitch.me/testresults/${id}`, {
     method: "DELETE",
   })
-    .then(response => response.json())
-    }
+  if (res.status === 200) {
+    alert("Successfully deleted event");
+  } else {
+    console.log(res.status);
+  }
+}
 
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
