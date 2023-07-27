@@ -14,6 +14,7 @@ export function TestResultForm() {
   const [avg, setAvg] = useState("DNF");
   const [levelAchieved, setLevelAchieved] = useState("");
   const [gradeAchieved, setGradeAchieved] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     const fetchStudentData = async () => {
@@ -33,8 +34,11 @@ export function TestResultForm() {
   }, []);
 
   function setSolvesWrapper(num, time) {
+
+    const restrictedTime = time.replace(/[^DNFdnf0-9.]/g, '');
+
     setSolves((currentSolves) => {
-      return { ...currentSolves, [num]: time }; // time could be a string i.e. "DNF"
+      return { ...currentSolves, [num]: restrictedTime }; // time could be a string i.e. "DNF"
     });
   }
 
@@ -43,8 +47,13 @@ export function TestResultForm() {
     let sum = 0;
     let min = 1000;
     let max = -1;
+    let count = 0
+
     for (const key in solves) {
       const curr = solves[key];
+      if (curr !== "") {
+        count++;
+      }
       if (curr === "DNF") {
         numDNFs++;
       } else {
@@ -53,13 +62,18 @@ export function TestResultForm() {
         if (curr < min) min = curr;
       }
     }
-    if (numDNFs > 1) {
-      setAvg("DNF");
-    } else if (numDNFs === 1) {
-      setAvg(((sum - min) / 3).toFixed(2));
-    } else if (numDNFs === 0) {
-      setAvg(((sum - max - min) / 3).toFixed(2));
+    if (count === 5) {
+      if (numDNFs > 1) {
+        setAvg("DNF");
+      } else if (numDNFs === 1) {
+        setAvg(((sum - min) / 3).toFixed(2));
+      } else if (numDNFs === 0) {
+        setAvg(((sum - max - min) / 3).toFixed(2));
+      }
+    } else {
+      setAvg("0.00")
     }
+      console.log(solves)
   }, [solves]);
 
   useEffect(() => {
@@ -125,6 +139,7 @@ export function TestResultForm() {
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 1"
+          value={solves[1]}
           onChange={(e) => setSolvesWrapper("1", e.target.value)}
           autoComplete="off"
         />
@@ -132,6 +147,7 @@ export function TestResultForm() {
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 2"
+          value={solves[2]}
           onChange={(e) => setSolvesWrapper("2", e.target.value)}
           autoComplete="off"
         />
@@ -139,6 +155,7 @@ export function TestResultForm() {
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 3"
+          value={solves[3]}
           onChange={(e) => setSolvesWrapper("3", e.target.value)}
           autoComplete="off"
         />
@@ -146,6 +163,7 @@ export function TestResultForm() {
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 4"
+          value={solves[4]}
           onChange={(e) => setSolvesWrapper("4", e.target.value)}
           autoComplete="off"
         />
@@ -153,6 +171,7 @@ export function TestResultForm() {
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 5"
+          value={solves[5]}
           onChange={(e) => setSolvesWrapper("5", e.target.value)}
           autoComplete="off"
         />
