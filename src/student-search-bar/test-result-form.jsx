@@ -34,18 +34,32 @@ export function TestResultForm() {
 
   function setSolvesWrapper(num, time) {
     setSolves((currentSolves) => {
-      return { ...currentSolves, [num]: Number(time) };
+      return { ...currentSolves, [num]: time }; // time could be a string i.e. "DNF"
     });
   }
 
   useEffect(() => {
+    let numDNFs = 0;
     let sum = 0;
+    let min = 1000;
+    let max = -1;
     for (const key in solves) {
-      sum += solves[key];
+      const curr = solves[key];
+      if (curr === "DNF") {
+        numDNFs++;
+      } else {
+        sum += Number(curr);
+        if (curr > max) max = curr;
+        if (curr < min) min = curr;
+      }
     }
-    const newAvg = sum / 5;
-    if (newAvg === 0) setAvg("DNF");
-    else setAvg((sum / 5).toFixed(2));
+    if (numDNFs > 1) {
+      setAvg("DNF");
+    } else if (numDNFs === 1) {
+      setAvg(((sum - min) / 3).toFixed(2));
+    } else if (numDNFs === 0) {
+      setAvg(((sum - max - min) / 3).toFixed(2));
+    }
   }, [solves]);
 
   useEffect(() => {
@@ -112,30 +126,35 @@ export function TestResultForm() {
           id="test-result-form-field"
           placeholder="Attempt 1"
           onChange={(e) => setSolvesWrapper("1", e.target.value)}
+          autoComplete="off"
         />
         <input
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 2"
           onChange={(e) => setSolvesWrapper("2", e.target.value)}
+          autoComplete="off"
         />
         <input
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 3"
           onChange={(e) => setSolvesWrapper("3", e.target.value)}
+          autoComplete="off"
         />
         <input
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 4"
           onChange={(e) => setSolvesWrapper("4", e.target.value)}
+          autoComplete="off"
         />
         <input
           type="text"
           id="test-result-form-field"
           placeholder="Attempt 5"
           onChange={(e) => setSolvesWrapper("5", e.target.value)}
+          autoComplete="off"
         />
         <input
           type="text"
@@ -150,6 +169,7 @@ export function TestResultForm() {
           placeholder="Level attempted"
           min="1"
           max="10"
+          autoComplete="off"
         />
         <input
           type="text"
