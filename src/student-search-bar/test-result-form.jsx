@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 export function TestResultForm() {
   const [searchInput, setSearchInput] = useState("");
+  const [isSelected, setIsSelected] = useState(false);
   const [studID, setStudID] = useState("");
   const [eventID, setEventID] = useState(""); // find where it's used
   const [students, setStudents] = useState([]);
@@ -40,6 +41,11 @@ export function TestResultForm() {
     setSolves((currentSolves) => {
       return { ...currentSolves, [num]: restrictedTime }; // time could be a string i.e. "DNF"
     });
+  }
+
+  function searchBarOnChange(e){
+    setIsSelected(false);
+    setSearchInput(e.target.value)
   }
 
   useEffect(() => {
@@ -115,6 +121,7 @@ export function TestResultForm() {
   const onSearch = (searchedName, searchedID) => {
     setSearchInput(searchedName);
     setStudID(searchedID);
+    setIsSelected(true);
   };
 
   const handleSubmit = async (e) => {
@@ -162,7 +169,7 @@ export function TestResultForm() {
           type="text"
           id="searchbar"
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e)=>searchBarOnChange(e)}
           placeholder="Enter name"
           autoComplete="off"
         />
@@ -253,13 +260,13 @@ export function TestResultForm() {
       <div className="dropdown">
         {students
           .filter((item) => {
-            const searchTerm = searchInput.toLowerCase();
-            const searchedName = item.sname.toLowerCase();
+            const searchInputToLower = searchInput.toLowerCase();
+            const storedNameToLower = item.sname.toLowerCase();
 
             return (
-              searchTerm &&
-              searchedName.includes(searchTerm) &&
-              searchTerm !== searchedName
+              !isSelected &&
+              storedNameToLower.includes(searchInputToLower) &&
+              searchInputToLower !== storedNameToLower
             );
           })
           .map((item) => (

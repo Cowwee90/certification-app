@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export function TestResultTable() {
   const [data, setData] = useState(null);
+  const [recordID, setRecordID] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +41,13 @@ export function TestResultTable() {
   );
 }
 
+const deleteUser = id => {
+  fetch(`https://certification-api.glitch.me/testresults/${id}`, {
+    method: "DELETE",
+  })
+    .then(response => response.json())
+    }
+
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
     return (
@@ -58,9 +66,8 @@ function showJsonInTable(JsonData) {
         <td>{info.grade_achieved}</td>
         <td>{info.name_to_be_printed}</td>
         <td>
-          <a href="google.com">
-            <FontAwesomeIcon icon={faPencil} />
-          </a>
+          <a onClick={() => deleteUser(info.id)}>
+            <FontAwesomeIcon icon={faTrash} /></a>
         </td>
       </tr>
     );
@@ -84,7 +91,7 @@ function showJsonInTable(JsonData) {
             <th>Level Achieved</th>
             <th>Grade Achieved</th>
             <th>Name to be Printed</th>
-            <th>Edit Record</th>
+            <th>Delete Record</th>
           </tr>
         </thead>
         <tbody>{DisplayData}</tbody>

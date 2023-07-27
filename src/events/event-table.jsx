@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export function EventTable() {
   const [data, setData] = useState(null);
@@ -49,7 +49,7 @@ function showJsonInTable(JsonData) {
         <td>{info.edate}</td>
         <td>
           <a href="google.com">
-            <FontAwesomeIcon icon={faPencil} />
+            <FontAwesomeIcon icon={faTrash} />
           </a>
         </td>
       </tr>
@@ -64,7 +64,7 @@ function showJsonInTable(JsonData) {
             <th>ID</th>
             <th>Name</th>
             <th>Date</th>
-            <th>Edit Record</th>
+            <th>Delete Record</th>
           </tr>
         </thead>
         <tbody>{DisplayData}</tbody>
