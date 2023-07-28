@@ -30,7 +30,7 @@ export function EventTable({ type }) {
     };
 
     fetchData();
-  }, []);
+  }, [date, type]);
 
   let heading;
   if (!type) {

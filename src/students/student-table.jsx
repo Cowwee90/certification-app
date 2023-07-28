@@ -4,18 +4,13 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export function StudentTable() {
   const [data, setData] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const headers = {
-          "User-Agent": "testingAgent", // not necessary
-        };
         const response = await fetch(
-          "https://certification-api.glitch.me/students",
-          {
-            headers,
-          }
+          "https://certification-api.glitch.me/students"
         );
         const jsonData = await response.json();
         setData(jsonData);
@@ -26,6 +21,62 @@ export function StudentTable() {
 
     fetchData();
   }, []);
+
+  function showJsonInTable(JsonData) {
+    const DisplayData = JsonData.filter((info) => {
+      if (searchInput) {
+        const searchInputToLower = searchInput.toLowerCase();
+        const storedNameToLower = info.sname.toLowerCase();
+
+        return (
+          searchInput &&
+          storedNameToLower.includes(searchInputToLower) &&
+          searchInputToLower !== storedNameToLower
+        );
+      } else return true;
+    }).map((info) => {
+      return (
+        <tr key={info.id}>
+          <td>{info.id}</td>
+          <td>{info.sname}</td>
+          <td>{info.birthday}</td>
+          <td>{info.highest_level}</td>
+          <td>{info.best_grade}</td>
+          <td>
+            <a onClick={() => deleteStudent(info.id)}>
+              <FontAwesomeIcon icon={faTrash} />
+            </a>
+          </td>
+        </tr>
+      );
+    });
+
+    return (
+      <div>
+        <input
+          type="text"
+          id="searchbar"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          placeholder="Enter name"
+          autoComplete="off"
+        />
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Date of Birth</th>
+              <th>Highest Level</th>
+              <th>Best Grade</th>
+              <th>Delete Record</th>
+            </tr>
+          </thead>
+          <tbody>{DisplayData}</tbody>
+        </table>
+      </div>
+    );
+  }
 
   return (
     <div className="data-table">
@@ -41,49 +92,15 @@ export function StudentTable() {
 }
 
 const deleteStudent = async (id) => {
-  const res = await fetch(`https://certification-api.glitch.me/students/${id}`, {
-    method: "DELETE",
-  })
+  const res = await fetch(
+    `https://certification-api.glitch.me/students/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
   if (res.status === 200) {
     alert("Successfully deleted event");
   } else {
     console.log(res.status);
   }
-}
-
-function showJsonInTable(JsonData) {
-  const DisplayData = JsonData.map((info) => {
-    return (
-      <tr key={info.id}>
-        <td>{info.id}</td>
-        <td>{info.sname}</td>
-        <td>{info.birthday}</td>
-        <td>{info.highest_level}</td>
-        <td>{info.best_grade}</td>
-        <td>
-          <a onClick={() => deleteStudent(info.id)}>
-            <FontAwesomeIcon icon={faTrash} />
-          </a>
-        </td>
-      </tr>
-    );
-  });
-
-  return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Highest Level</th>
-            <th>Best Grade</th>
-            <th>Delete Record</th>
-          </tr>
-        </thead>
-        <tbody>{DisplayData}</tbody>
-      </table>
-    </div>
-  );
-}
+};
