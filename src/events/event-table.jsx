@@ -32,9 +32,18 @@ export function EventTable({ type }) {
     fetchData();
   }, []);
 
+  let heading;
+  if (!type) {
+    heading = "All Events";
+  } else if (type === "upcoming") {
+    heading = "Upcoming Events";
+  } else if (type === "past") {
+    heading = "Past Events";
+  }
+
   return (
     <div className="data-table">
-      <h1>All Events</h1>
+      <h1>{heading}</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
         showJsonInTable(data)
