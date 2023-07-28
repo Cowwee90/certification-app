@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import "../styles.css";
 
 export function EventTable({ type }) {
   const [data, setData] = useState(null);
@@ -42,7 +43,7 @@ export function EventTable({ type }) {
   }
 
   return (
-    <div className="data-table">
+    <div className="main-section">
       <h1>{heading}</h1>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
@@ -73,8 +74,8 @@ function showJsonInTable(JsonData) {
         <td>{info.ename}</td>
         <td>{info.edate}</td>
         <td>
-          <a onClick={() => deleteEvent(info.id)}>
-            <FontAwesomeIcon icon={faTrash} />
+          <a className="delete-btn" onClick={() => deleteEvent(info.id)}>
+            <FontAwesomeIcon icon={faTrash} size="xl" border />
           </a>
         </td>
       </tr>
@@ -82,18 +83,16 @@ function showJsonInTable(JsonData) {
   });
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Delete Record</th>
-          </tr>
-        </thead>
-        <tbody>{DisplayData}</tbody>
-      </table>
-    </div>
+    <table className="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Delete Record</th>
+        </tr>
+      </thead>
+      <tbody>{DisplayData}</tbody>
+    </table>
   );
 }

@@ -1,3 +1,19 @@
+/* :root {
+  --bg-body-light: hsl(0, 0%, 16%);
+  --accent: hsl(155, 100%, 70%);
+  --text-white: hsl(0, 0%, 100%);
+  --ad: hsl(0, 0, 80%);
+  font-size: 62.5%;
+
+  --fs-88: 8.8rem;
+  --fs-48: 4.8rem;
+  --fs-24: 2.4rem;
+  --fs-15: 1.5rem;
+  box-sizing: border-box;
+
+  --navbar-width: 250px;
+} */
+
 body {
     background: white;
     font-family: Helvetica, sans-serif;
@@ -15,6 +31,41 @@ body::-webkit-scrollbar-thumb {
   background-color: cornflowerblue;    /* color of the scroll thumb */
   border-radius: 25px;       /* roundness of the scroll thumb */
   border: 2px solid white;  /* creates padding around scroll thumb */
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: inline;
+  /* padding: 0px 10px; */
+  background-color: rgb(10, 10, 30);
+  height: 100vh;
+  width: 250px;
+  /* width: var(--navbar-width); */
+  /* margin: auto; */
+  padding-top: 50px;
+}
+
+.navbar-item {
+  font-size: var(--fs-15);
+  color: var(--text-white);
+  list-style: none;
+  text-decoration: none;
+  line-height: 5rem;
+}
+
+.navbar-item:hover {
+  color: var(--accent);
+} */
+
+.main-section {
+  /* display: inline-block; */
+  margin-left: 250px;
+  /* clear: left;  */
+  /* margin: auto; */
+  /* top: 0px; */
+  /* float: right; */
 }
 
 #searchbar {
@@ -35,7 +86,7 @@ body::-webkit-scrollbar-thumb {
 
 #test-result-form-field {
   width: 15vw;
-  height:25px;
+  height: 25px;
   font-size: 1rem;
   padding-left: 10px;
   display: flex;
@@ -103,12 +154,18 @@ form {
 }
 
 
-.data-table {text-align:center;}
+.data-table {
+  text-align: center;
+  margin: auto;
+}
 
-th{font-size:16px;
-border-bottom: 2px solid black;}
+th {
+  font-size: var(--fs-15);
+  border-bottom: 2px solid black;
+}
 
 tbody td {
+  font-size: var(--fs-15);
   padding: 10px;
 }
 
@@ -116,4 +173,8 @@ tbody tr:nth-child(odd) {
   border:2px solid black;
   background-color: lavender;
   color: black;
+}
+
+h1 {
+  text-align: center;
 }

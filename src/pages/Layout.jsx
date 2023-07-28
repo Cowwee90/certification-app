@@ -3,25 +3,37 @@ import { Outlet, Link } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <nav>
+      <nav className="navbar">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className="navbar-item">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/testresults">Test Results</Link>
+            <Link to="/testresults" className="navbar-item">
+              Test Results
+            </Link>
           </li>
           <li>
-            <Link to="/students">Students</Link>
+            <Link to="/students" className="navbar-item">
+              Students
+            </Link>
           </li>
           <li>
-            <Link to="/events">Events</Link>
+            <Link to="/events" className="navbar-item">
+              Events
+            </Link>
           </li>
           <li>
-            <Link to="/events/upcoming">Upcoming Events</Link>
+            <Link to="/events/upcoming" className="navbar-item">
+              Upcoming Events
+            </Link>
           </li>
           <li>
-            <Link to="/events/past">Past Events</Link>
+            <Link to="/events/past" className="navbar-item">
+              Past Events
+            </Link>
           </li>
         </ul>
       </nav>

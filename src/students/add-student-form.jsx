@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../app.css";
 
 export function Form() {
   const [name, setName] = useState("");
