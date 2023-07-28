@@ -26,12 +26,18 @@ export function StudentTable() {
     const DisplayData = JsonData.filter((info) => {
       if (searchInput) {
         const searchInputToLower = searchInput.toLowerCase();
-        const storedNameToLower = info.sname.toLowerCase();
+        const nameToLower = info.sname.toLowerCase();
 
         return (
           searchInput &&
-          storedNameToLower.includes(searchInputToLower) &&
-          searchInputToLower !== storedNameToLower
+          (nameToLower.includes(searchInputToLower) ||
+            (info.highest_level
+              ? info.highest_level.toString().includes(searchInput)
+              : false) ||
+            (info.best_grade
+              ? info.best_grade.toLowerCase().includes(searchInputToLower)
+              : false) ||
+            info.birthday.slice(0, 10).includes(searchInputToLower))
         );
       } else return true;
     }).map((info) => {
@@ -39,7 +45,7 @@ export function StudentTable() {
         <tr key={info.id}>
           <td>{info.id}</td>
           <td>{info.sname}</td>
-          <td>{info.birthday}</td>
+          <td>{info.birthday.slice(0, 10)}</td>
           <td>{info.highest_level}</td>
           <td>{info.best_grade}</td>
           <td>
@@ -81,12 +87,7 @@ export function StudentTable() {
   return (
     <div className="data-table">
       <h1>All Students</h1>
-      {data ? (
-        //<pre>{JSON.stringify(data, null, 2)}</pre>
-        showJsonInTable(data)
-      ) : (
-        <p>Loading data...</p>
-      )}
+      {data ? showJsonInTable(data) : <p>Loading data...</p>}
     </div>
   );
 }
