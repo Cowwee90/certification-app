@@ -169,7 +169,7 @@ export function TestResultForm() {
 
   return (
     <>
-      <form className="searchbar-wrap" onSubmit={handleSubmit}>
+      <form className="form-wrap" onSubmit={handleSubmit}>
         <input
           type="text"
           id="searchbar"

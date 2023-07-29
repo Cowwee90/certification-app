@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faPlus,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles.css";
 
 export function EventTable({ type }) {
   const [data, setData] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
 
   const date = new Date().toJSON().slice(0, 10);
 
@@ -44,15 +49,82 @@ export function EventTable({ type }) {
 
   return (
     <div className="main-section">
-      <h1>{heading}</h1>
-      {data ? (
-        //<pre>{JSON.stringify(data, null, 2)}</pre>
-        showJsonInTable(data)
-      ) : (
-        <p>Loading data...</p>
-      )}
+      <header>
+        <h1>{heading}</h1>
+        <button className="btn">
+          <span className="btn-icon">
+            <FontAwesomeIcon icon={faPlus} size="xl" />
+          </span>
+          <span className="btn-text">Add</span>
+        </button>
+
+        {/* {isShown && <Form />} */}
+      </header>
+      <div className="main-body">
+        <div className="search-bar-wrapper">
+          <span className="search-bar-icon">
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </span>
+          <input
+            type="text"
+            className="search-bar"
+            id="searchbar"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search events"
+            autoComplete="off"
+          />
+        </div>
+        {data ? (
+          //<pre>{JSON.stringify(data, null, 2)}</pre>
+          showJsonInTable(data)
+        ) : (
+          <h3>Loading data...</h3>
+        )}
+      </div>
     </div>
   );
+
+  function showJsonInTable(JsonData) {
+    const DisplayData = JsonData.filter((info) => {
+      if (searchInput) {
+        const searchInputToLower = searchInput.toLowerCase();
+        const nameToLower = info.ename.toLowerCase();
+
+        return (
+          searchInput &&
+          (nameToLower.includes(searchInputToLower) ||
+            info.edate.slice(0, 10).includes(searchInputToLower))
+        );
+      } else return true;
+    }).map((info) => {
+      return (
+        <tr key={info.id}>
+          <td className="id-col">{info.id}</td>
+          <td className="name-col">{info.ename}</td>
+          <td>{info.edate.slice(0, 10)}</td>
+          <td>
+            <a className="delete-btn" onClick={() => deleteEvent(info.id)}>
+              <FontAwesomeIcon icon={faTrash} size="xl" border />
+            </a>
+          </td>
+        </tr>
+      );
+    });
+
+    return (
+      <table className="data-table">
+        <thead>
+          <tr>
+            <th colSpan={2}>EVENT</th>
+            <th>DATE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>{DisplayData}</tbody>
+      </table>
+    );
+  }
 }
 
 const deleteEvent = async (id) => {
@@ -65,34 +137,3 @@ const deleteEvent = async (id) => {
     console.log(res.status);
   }
 };
-
-function showJsonInTable(JsonData) {
-  const DisplayData = JsonData.map((info) => {
-    return (
-      <tr key={info.id}>
-        <td>{info.id}</td>
-        <td>{info.ename}</td>
-        <td>{info.edate}</td>
-        <td>
-          <a className="delete-btn" onClick={() => deleteEvent(info.id)}>
-            <FontAwesomeIcon icon={faTrash} size="xl" border />
-          </a>
-        </td>
-      </tr>
-    );
-  });
-
-  return (
-    <table className="data-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Delete Record</th>
-        </tr>
-      </thead>
-      <tbody>{DisplayData}</tbody>
-    </table>
-  );
-}

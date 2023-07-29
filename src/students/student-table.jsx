@@ -67,7 +67,7 @@ export function StudentTable() {
           placeholder="Enter name"
           autoComplete="off"
         />
-        <table>
+        <table className="data-table">
           <thead>
             <tr>
               <th>ID</th>

@@ -4,7 +4,6 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export function TestResultTable() {
   const [data, setData] = useState(null);
-  const [recordID, setRecordID] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,28 +28,30 @@ export function TestResultTable() {
   }, []);
 
   return (
-    <div className="data-table">
-      <h1>All Test Results</h1>
+    <>
       {data ? (
         //<pre>{JSON.stringify(data, null, 2)}</pre>
         showJsonInTable(data)
       ) : (
-        <p>Loading data...</p>
+        <h3>Loading data...</h3>
       )}
-    </div>
+    </>
   );
 }
 
 const deleteResult = async (id) => {
-  const res = await fetch(`https://certification-api.glitch.me/testresults/${id}`, {
-    method: "DELETE",
-  })
+  const res = await fetch(
+    `https://certification-api.glitch.me/testresults/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
   if (res.status === 200) {
     alert("Successfully deleted event");
   } else {
     console.log(res.status);
   }
-}
+};
 
 function showJsonInTable(JsonData) {
   const DisplayData = JsonData.map((info) => {
@@ -71,35 +72,34 @@ function showJsonInTable(JsonData) {
         <td>{info.name_to_be_printed}</td>
         <td>
           <a onClick={() => deleteResult(info.id)}>
-            <FontAwesomeIcon icon={faTrash} /></a>
+            <FontAwesomeIcon icon={faTrash} />
+          </a>
         </td>
       </tr>
     );
   });
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>StudentID</th>
-            <th>EventID</th>
-            <th>Solve 1</th>
-            <th>Solve 2</th>
-            <th>Solve 3</th>
-            <th>Solve 4</th>
-            <th>Solve 5</th>
-            <th>Average of 5</th>
-            <th>Level Attempted</th>
-            <th>Level Achieved</th>
-            <th>Grade Achieved</th>
-            <th>Name to be Printed</th>
-            <th>Delete Record</th>
-          </tr>
-        </thead>
-        <tbody>{DisplayData}</tbody>
-      </table>
-    </div>
+    <table className="data-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>StudentID</th>
+          <th>EventID</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>Average</th>
+          <th>Level Attempted</th>
+          <th>Level Achieved</th>
+          <th>Grade Achieved</th>
+          <th>Name to be Printed</th>
+          <th>Delete Record</th>
+        </tr>
+      </thead>
+      <tbody>{DisplayData}</tbody>
+    </table>
   );
 }
