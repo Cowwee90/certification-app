@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AddStudentButton } from "../students/show-form.jsx";
 import {
   faTrash,
   faPlus,
@@ -63,18 +64,24 @@ export function StudentTable() {
     });
 
     return (
-      <div>
-      <span className="search-bar-icon">
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      <div className="main-body">
+        <div className="search-bar-container">
+          <div className="search-bar-wrapper">
+            <span className="search-bar-icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
 
-        <input
-          type="text"
-          className="search-bar"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          placeholder="Enter name"
-          autoComplete="off"
-        /></span>
+              <input
+                type="text"
+                className="search-bar"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="Enter name"
+                autoComplete="off"
+              />
+            </span>
+          </div>
+        </div>
+
         <table className="data-table">
           <thead>
             <tr>
@@ -93,8 +100,11 @@ export function StudentTable() {
   }
 
   return (
-    <div className="data-table">
-      <h1>All Students</h1>
+    <div className="main-section">
+      <header>
+        <h1>All Students</h1>
+        <AddStudentButton />
+      </header>
       {data ? showJsonInTable(data) : <p>Loading data...</p>}
     </div>
   );

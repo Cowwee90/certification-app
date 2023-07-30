@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AddEventButton } from "../events/show-add-event.jsx";
 import {
   faTrash,
   faPlus,
@@ -51,22 +52,24 @@ export function EventTable({ type }) {
     <div className="main-section">
       <header>
         <h1>{heading}</h1>
-
+        <AddEventButton />
         {/* {isShown && <Form />} */}
       </header>
       <div className="main-body">
-        <div className="search-bar-wrapper">
-          <span className="search-bar-icon">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </span>
-          <input
-            type="text"
-            className="search-bar"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search events"
-            autoComplete="off"
-          />
+        <div className="search-bar-container">
+          <div className="search-bar-wrapper">
+            <span className="search-bar-icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </span>
+            <input
+              type="text"
+              className="search-bar"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search events"
+              autoComplete="off"
+            />
+          </div>
         </div>
         {data ? (
           //<pre>{JSON.stringify(data, null, 2)}</pre>
