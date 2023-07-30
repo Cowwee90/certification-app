@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddEventButton } from "../events/show-add-event.jsx";
 import {
@@ -13,30 +13,30 @@ export function EventTable({ type }) {
 
   const date = new Date().toJSON().slice(0, 10);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let response;
-        if (!type) {
-          response = await fetch("https://certification-api.glitch.me/events");
-        } else if (type === "upcoming") {
-          response = await fetch(
-            `https://certification-api.glitch.me/events?after=${date}`
-          );
-        } else if (type === "past") {
-          response = await fetch(
-            `https://certification-api.glitch.me/events?before=${date}`
-          );
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+  const fetchData = useCallback(async () => {
+    try {
+      let response;
+      if (!type) {
+        response = await fetch("https://certification-api.glitch.me/events");
+      } else if (type === "upcoming") {
+        response = await fetch(
+          `https://certification-api.glitch.me/events?after=${date}`
+        );
+      } else if (type === "past") {
+        response = await fetch(
+          `https://certification-api.glitch.me/events?before=${date}`
+        );
       }
-    };
-
-    fetchData();
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }, [date, type]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   let heading;
   if (!type) {
@@ -96,6 +96,22 @@ export function EventTable({ type }) {
       );
     });
 
+    const deleteEvent = async (id) => {
+      const res = await fetch(
+        `https://certification-api.glitch.me/events/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (res.status === 200) {
+        alert("Successfully deleted event");
+      } else {
+        console.log(res.status);
+      }
+
+      await fetchData();
+    };
+
     return (
       <div className="main-body">
         <div className="search-bar-container">
@@ -127,14 +143,3 @@ export function EventTable({ type }) {
     );
   }
 }
-
-const deleteEvent = async (id) => {
-  const res = await fetch(`https://certification-api.glitch.me/events/${id}`, {
-    method: "DELETE",
-  });
-  if (res.status === 200) {
-    alert("Successfully deleted event");
-  } else {
-    console.log(res.status);
-  }
-};
