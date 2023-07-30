@@ -51,12 +51,6 @@ export function EventTable({ type }) {
     <div className="main-section">
       <header>
         <h1>{heading}</h1>
-        <button className="btn">
-          <span className="btn-icon">
-            <FontAwesomeIcon icon={faPlus} size="xl" />
-          </span>
-          <span className="btn-text">Add</span>
-        </button>
 
         {/* {isShown && <Form />} */}
       </header>
@@ -68,7 +62,6 @@ export function EventTable({ type }) {
           <input
             type="text"
             className="search-bar"
-            id="searchbar"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search events"

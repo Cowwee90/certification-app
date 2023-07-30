@@ -71,9 +71,9 @@ function showJsonInTable(JsonData) {
         <td>{info.grade_achieved}</td>
         <td>{info.name_to_be_printed}</td>
         <td>
-          <a onClick={() => deleteResult(info.id)}>
-            <FontAwesomeIcon icon={faTrash} />
-          </a>
+        <a className="delete-btn" onClick={() => deleteResult(info.id)}>
+          <FontAwesomeIcon icon={faTrash} />
+        </a>
         </td>
       </tr>
     );

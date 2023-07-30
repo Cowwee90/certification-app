@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export function Form() {
-  const [name, setName] = useState("");
-  const [birthday, setBirthday] = useState("");
+export function EForm() {
+  const [eventName, setEventName] = useState("");
+  const [eventDate, setEventDate] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -10,19 +10,19 @@ export function Form() {
       "Content-Type": "application/json",
     };
     try {
-      const res = await fetch("https://certification-api.glitch.me/students", {
+      const res = await fetch("https://certification-api.glitch.me/events", {
         headers: headers,
         method: "POST",
         body: JSON.stringify({
-          sname: name,
-          birthday: birthday,
+          ename: eventName,
+          edate: eventDate,
         }),
       });
       await res.json();
       if (res.status === 201) {
-        setName("");
-        setBirthday("");
-        window.location.reload(false);
+        setEventName("");
+        setEventDate("");
+        alert("success");
       } else {
         alert("Some error occured");
       }
@@ -32,23 +32,23 @@ export function Form() {
   };
 
   return (
-    <div className="addstudent">
+    <div>
       <form onSubmit={handleSubmit}>
-        <h3>Add New Student</h3>
+        <h3>Add New Event</h3>
         <input
           type="text"
-          value={name}
+          value={eventName}
           placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setEventName(e.target.value)}
         />
-        <br /><br />
+        <br />
         <input
           type="date"
-          value={birthday}
+          value={eventDate}
           placeholder="Birthday"
-          onChange={(e) => setBirthday(e.target.value)}
+          onChange={(e) => setEventDate(e.target.value)}
         />
-        <br /><br /> 
+        <br />
         <button type="submit">Add Student</button>
       </form>
     </div>

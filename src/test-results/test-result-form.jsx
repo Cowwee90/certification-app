@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+const Draggable = require('react-draggable');
+const DraggableCore = Draggable.DraggableCore;
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import {
 //   faGripLinesVertical,
@@ -169,6 +171,7 @@ export function TestResultForm() {
 
   return (
     <>
+    <Draggable>
       <form className="form-wrap" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -261,7 +264,8 @@ export function TestResultForm() {
         />
         <button type="submit">Add Record</button>
       </form>
-
+      </Draggable>
+      <Draggable>
       <div className="dropdown">
         {students
           .filter((item) => {
@@ -281,12 +285,12 @@ export function TestResultForm() {
               key={item.id}
               onClick={() => {
                 onSearch(item.sname, item.id);
-              }}
-            >
+              }}>
               {item.sname} <br /> {item.birthday}{" "}
             </div>
           ))}
       </div>
+      </Draggable>
     </>
   );
 }

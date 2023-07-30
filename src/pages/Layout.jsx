@@ -22,6 +22,9 @@ const Layout = () => {
         <Link to="/events/past" className="navbar-item">
           Past Events
         </Link>
+        <Link to="/admin-login" className="navbar-item">
+          Login
+        </Link>
       </nav>
 
       <Outlet />

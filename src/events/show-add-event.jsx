@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Form } from "./add-student-form.jsx";
+import { EForm } from "./add-event-form.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 
-export function AddStudentButton() {
+export function AddEventButton() {
   const [isShown, setIsShown] = useState(false);
-
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
@@ -21,9 +20,9 @@ export function AddStudentButton() {
       <span className="btn-icon">
         <FontAwesomeIcon icon={faPlus} size="xl" />
       </span>
-      <span className="btn-text">Add New Student</span>
+      <span className="btn-text">Add New Event</span>
     </button>
-      {isShown && <Form />}
+      {isShown && <EForm />}
     </div>
   );
 }

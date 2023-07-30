@@ -70,7 +70,7 @@ body::-webkit-scrollbar-thumb {
 
 #searchbar {
   width: 18vw;
-  height:28px;
+  height:30px;
   font-size: 1rem;
   padding-left: 10px;
   margin: 7px;
@@ -157,7 +157,8 @@ form {
 .data-table {
   text-align: center;
   margin: auto;
-}
+  overflow-x: scroll;
+overflow-y: scroll;}
 
 th {
   font-size: var(--fs-15);

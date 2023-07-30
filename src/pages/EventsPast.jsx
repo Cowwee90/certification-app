@@ -1,9 +1,11 @@
 import { EventTable } from "../events/event-table.jsx";
+import { AddEventButton } from "../events/show-add-event.jsx";
 
 const EventsPast = () => {
   return (
     <>
-      <EventTable type="past" />
+    <AddEventButton />
+    <EventTable type="past" />
     </>
   );
 };

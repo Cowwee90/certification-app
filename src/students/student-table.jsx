@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faPlus,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+import "../styles.css";
 
 export function StudentTable() {
   const [data, setData] = useState(null);
@@ -49,7 +54,7 @@ export function StudentTable() {
           <td>{info.highest_level}</td>
           <td>{info.best_grade}</td>
           <td>
-            <a onClick={() => deleteStudent(info.id)}>
+            <a className="delete-btn" onClick={() => deleteStudent(info.id)}>
               <FontAwesomeIcon icon={faTrash} />
             </a>
           </td>
@@ -59,14 +64,17 @@ export function StudentTable() {
 
     return (
       <div>
+      <span className="search-bar-icon">
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+
         <input
           type="text"
-          id="searchbar"
+          className="search-bar"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           placeholder="Enter name"
           autoComplete="off"
-        />
+        /></span>
         <table className="data-table">
           <thead>
             <tr>
