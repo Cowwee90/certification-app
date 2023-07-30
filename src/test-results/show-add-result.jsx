@@ -16,11 +16,11 @@ export function AddTestResultButton() {
 
   return (
     <div>
-      <button className="btn" onClick={handleClick} style={{ width: "250px" }}>
+      <button className="btn" onClick={handleClick}>
         <span className="btn-icon">
           <FontAwesomeIcon icon={faPlus} size="xl" />
         </span>
-        <span className="btn-text">Add New Test Result</span>
+        <span className="btn-text">Add</span>
       </button>
       {isShown && <TestResultForm />}
     </div>

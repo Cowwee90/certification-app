@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddEventButton } from "../events/show-add-event.jsx";
-import { faTrash, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 import "../styles.css";
 
 export function EventTable({ type }) {
@@ -51,29 +54,12 @@ export function EventTable({ type }) {
         <AddEventButton />
         {/* {isShown && <Form />} */}
       </header>
-      <div className="main-body">
-        <div className="search-bar-container">
-          <div className="search-bar-wrapper">
-            <span className="search-bar-icon">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </span>
-            <input
-              type="text"
-              className="search-bar"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search events"
-              autoComplete="off"
-            />
-          </div>
-        </div>
-        {data ? (
-          //<pre>{JSON.stringify(data, null, 2)}</pre>
-          showJsonInTable(data)
-        ) : (
-          <h3>Loading data...</h3>
-        )}
-      </div>
+      {data ? (
+        //<pre>{JSON.stringify(data, null, 2)}</pre>
+        showJsonInTable(data)
+      ) : (
+        <h2>Loading data...</h2>
+      )}
     </div>
   );
 
@@ -96,25 +82,48 @@ export function EventTable({ type }) {
           <td className="name-col">{info.ename}</td>
           <td>{info.edate.slice(0, 10)}</td>
           <td>
-            <a className="delete-btn" onClick={() => deleteEvent(info.id)}>
-              <FontAwesomeIcon icon={faTrash} size="xl" border />
-            </a>
+            <button
+              className="btn delete-btn"
+              onClick={() => deleteEvent(info.id)}
+            >
+              <span className="btn-icon">
+                <FontAwesomeIcon icon={faTrashCan} size="xl" />
+              </span>
+              <span className="btn-text">Delete</span>
+            </button>
           </td>
         </tr>
       );
     });
 
     return (
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th colSpan={2}>EVENT</th>
-            <th>DATE</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>{DisplayData}</tbody>
-      </table>
+      <div className="main-body">
+        <div className="search-bar-container">
+          <div className="search-bar-wrapper">
+            <span className="search-bar-icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </span>
+            <input
+              type="text"
+              className="search-bar"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search events"
+              autoComplete="off"
+            />
+          </div>
+        </div>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th colSpan={2}>EVENT</th>
+              <th>DATE</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>{DisplayData}</tbody>
+        </table>
+      </div>
     );
   }
 }

@@ -15,11 +15,11 @@ export function AddEventButton() {
 
   return (
     <>
-      <button className="btn" onClick={handleClick} style={{ width: "250px" }}>
+      <button className="btn" onClick={handleClick}>
         <span className="btn-icon">
           <FontAwesomeIcon icon={faPlus} size="xl" />
         </span>
-        <span className="btn-text">Add New Event</span>
+        <span className="btn-text">Add</span>
       </button>
       {isShown && <EForm />}
     </>

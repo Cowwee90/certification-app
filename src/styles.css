@@ -11,6 +11,9 @@
   --accent-dark: hsl(160, 84%, 35%);
   --accent-darkest: hsl(160, 84%, 31%);
   --accent-super-light: hsla(160, 84%, 95%);
+  --accent-delete: hsl(0, 84%, 39%);
+  --accent-delete-dark: hsl(0, 84%, 35%);
+  --accent-delete-darkest: hsl(0, 84%, 31%);
   --text-light: hsl(0, 0%, 100%);
   --text-grey: hsl(0, 0%, 50%);
   --text-dark: hsl(0, 0%, 0%);
@@ -31,6 +34,9 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+
+/* NAVIGATION BAR */
 
 .navbar {
   position: fixed;
@@ -61,6 +67,9 @@ body {
   background-color: var(--accent);
   color: var(--text-dark);
 }
+
+
+/* MAIN SECTION */
 
 .main-section {
   display: flex;
@@ -98,9 +107,11 @@ header {
   /* border: 1px solid black; */
 }
 
+
+/* SEARCH BAR */
+
 .search-bar-container {
   height: 50px;
-  /* width: 100%; */
   padding: 25px;
   background-color: var(--bg-table-body);
 }
@@ -150,6 +161,9 @@ header {
   /* background-color: var(--bg-table-body); */
 }
 
+
+/* TABLES */
+
 .data-table {
   justify-content: center;
   align-items: center;
@@ -190,6 +204,9 @@ tbody tr:hover {
   text-align: left;
 }
 
+
+/* BUTTONS */
+
 .btn {
   display: inline-flex;
   justify-content: center;
@@ -221,21 +238,23 @@ tbody tr:hover {
   align-items: center;
   height: 100%;
   margin: 0 4px;
+  background: transparent;
 }
 
 .delete-btn {
-  size: 25px;
+  background-color: var(--accent-delete);
 }
 
 .delete-btn:hover {
-  cursor: pointer;
-  color: royalblue;
+  background-color: var(--accent-delete-dark);
 }
 
-.add-btn {
-  /* display: block; */
-  /* background-color: var(--accent); */
+.delete-btn:active {
+  background-color: var(--accent-delete-darkest);
 }
+
+
+/* FORMS */
 
 .form-wrap {
   position: fixed;
@@ -277,9 +296,11 @@ tbody tr:hover {
 }
 
 
+/* ELEMENTS */
+
 h1 {
   margin: 0;
-  font-size: var(--fs-24);
+  font-size: var(--fs-36);
   font-weight: 700;
   text-align: center;
 }

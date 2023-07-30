@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddStudentButton } from "../students/show-form.jsx";
 import {
-  faTrash,
-  faPlus,
+  faTrashCan,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles.css";
@@ -55,9 +54,15 @@ export function StudentTable() {
           <td>{info.highest_level}</td>
           <td>{info.best_grade}</td>
           <td>
-            <a className="delete-btn" onClick={() => deleteStudent(info.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </a>
+            <button
+              className="btn delete-btn"
+              onClick={() => deleteStudent(info.id)}
+            >
+              <span className="btn-icon">
+                <FontAwesomeIcon icon={faTrashCan} size="xl" />
+              </span>
+              <span className="btn-text">Delete</span>
+            </button>
           </td>
         </tr>
       );
@@ -90,7 +95,7 @@ export function StudentTable() {
               <th>Date of Birth</th>
               <th>Highest Level</th>
               <th>Best Grade</th>
-              <th>Delete Record</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>{DisplayData}</tbody>
@@ -105,7 +110,7 @@ export function StudentTable() {
         <h1>All Students</h1>
         <AddStudentButton />
       </header>
-      {data ? showJsonInTable(data) : <p>Loading data...</p>}
+      {data ? showJsonInTable(data) : <h2>Loading data...</h2>}
     </div>
   );
 }

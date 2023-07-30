@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AddTestResultButton } from "./show-add-result.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashCan,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 export function TestResultTable() {
   const [data, setData] = useState(null);
@@ -37,29 +40,12 @@ export function TestResultTable() {
           <AddTestResultButton />
           {/* {isShown && <Form />} */}
         </header>
-        <div className="main-body">
-          <div className="search-bar-container">
-            <div className="search-bar-wrapper">
-              <span className="search-bar-icon">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </span>
-              <input
-                type="text"
-                className="search-bar"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search test results"
-                autoComplete="off"
-              />
-            </div>
-          </div>
-          {data ? (
-            //<pre>{JSON.stringify(data, null, 2)}</pre>
-            showJsonInTable(data)
-          ) : (
-            <h3>Loading data...</h3>
-          )}
-        </div>
+        {data ? (
+          //<pre>{JSON.stringify(data, null, 2)}</pre>
+          showJsonInTable(data)
+        ) : (
+          <h2>Loading data...</h2>
+        )}
       </div>
     </>
   );
@@ -93,36 +79,59 @@ export function TestResultTable() {
           <td>{info.grade_achieved}</td>
           <td>{info.name_to_be_printed}</td>
           <td>
-            <a className="delete-btn" onClick={() => deleteResult(info.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </a>
+            <button
+              className="btn delete-btn"
+              onClick={() => deleteResult(info.id)}
+            >
+              <span className="btn-icon">
+                <FontAwesomeIcon icon={faTrashCan} size="xl" />
+              </span>
+              <span className="btn-text">Delete</span>
+            </button>
           </td>
         </tr>
       );
     });
 
     return (
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>StudentID</th>
-            <th>EventID</th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>Average</th>
-            <th>Level Attempted</th>
-            <th>Level Achieved</th>
-            <th>Grade Achieved</th>
-            <th>Name to be Printed</th>
-            <th>Delete Record</th>
-          </tr>
-        </thead>
-        <tbody>{DisplayData}</tbody>
-      </table>
+      <div className="main-body">
+        <div className="search-bar-container">
+          <div className="search-bar-wrapper">
+            <span className="search-bar-icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </span>
+            <input
+              type="text"
+              className="search-bar"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search test results"
+              autoComplete="off"
+            />
+          </div>
+        </div>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>StudentID</th>
+              <th>EventID</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>Average</th>
+              <th>Level Attempted</th>
+              <th>Level Achieved</th>
+              <th>Grade Achieved</th>
+              <th>Name to be Printed</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>{DisplayData}</tbody>
+        </table>
+      </div>
     );
   }
 }
