@@ -49,7 +49,7 @@ export function EForm() {
           onChange={(e) => setEventDate(e.target.value)}
         />
         <br />
-        <button type="submit">Add Student</button>
+        <button type="submit">Add Event</button>
       </form>
     </div>
   );

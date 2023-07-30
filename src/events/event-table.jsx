@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddEventButton } from "../events/show-add-event.jsx";
-import {
-  faTrash,
-  faPlus,
-  faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../styles.css";
 
 export function EventTable({ type }) {
