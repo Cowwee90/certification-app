@@ -260,6 +260,7 @@ export function TestResultForm() {
           id="test-result-form-field"
           value={printedName}
           placeholder="Name to be printed"
+          autoComplete="off"
           onChange={(e) => setPrintedName(e.target.value)}
         />
         <button type="submit">Add Record</button>
