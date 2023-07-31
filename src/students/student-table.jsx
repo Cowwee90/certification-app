@@ -87,6 +87,7 @@ export function StudentTable() {
           </div>
         </div>
 
+        <div className="tableContainer">
         <table className="data-table">
           <thead>
             <tr>
@@ -100,6 +101,7 @@ export function StudentTable() {
           </thead>
           <tbody>{DisplayData}</tbody>
         </table>
+        </div>
       </div>
     );
   }

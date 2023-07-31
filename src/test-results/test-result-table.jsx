@@ -110,6 +110,8 @@ export function TestResultTable() {
             />
           </div>
         </div>
+
+        <div className="tableContainer">
         <table className="data-table">
           <thead>
             <tr>
@@ -130,7 +132,7 @@ export function TestResultTable() {
             </tr>
           </thead>
           <tbody>{DisplayData}</tbody>
-        </table>
+        </table></div>
       </div>
     );
   }
@@ -144,7 +146,7 @@ const deleteResult = async (id) => {
     }
   );
   if (res.status === 200) {
-    alert("Successfully deleted event");
+    alert("Successfully deleted student's result.");
   } else {
     console.log(res.status);
   }

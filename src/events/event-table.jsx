@@ -129,6 +129,8 @@ export function EventTable({ type }) {
             />
           </div>
         </div>
+
+        <div className="tableContainer">
         <table className="data-table">
           <thead>
             <tr>
@@ -139,6 +141,8 @@ export function EventTable({ type }) {
           </thead>
           <tbody>{DisplayData}</tbody>
         </table>
+        </div>
+        
       </div>
     );
   }

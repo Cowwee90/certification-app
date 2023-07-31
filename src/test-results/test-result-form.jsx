@@ -183,7 +183,7 @@ export function TestResultForm() {
         />
         <input type="hidden" value={studID} readOnly />
         <input type="hidden" value={eventID} readOnly />
-
+        <h4>Please enter results in seconds. <br/>Example: 1min 25.566s = 85.56s </h4>
         <input
           type="text"
           id="test-result-form-field"
