@@ -50,8 +50,10 @@ export function StudentTable() {
     }).map((info) => {
       return (
         <tr key={info.id}>
-          <td>{info.id}</td>
-          <td>{info.sname}</td>
+          <td className="name-col">
+            <span>{info.sname}</span>
+            <span className="id-below"> Student ID: {info.id} </span>
+          </td>
           <td>{info.birthday.slice(0, 10)}</td>
           <td>{info.highest_level}</td>
           <td>{info.best_grade}</td>
@@ -93,7 +95,6 @@ export function StudentTable() {
           <table className="data-table">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Date of Birth</th>
                 <th>Highest Level</th>

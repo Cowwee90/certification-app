@@ -63,9 +63,14 @@ export function TestResultTable() {
     }).map((info) => {
       return (
         <tr key={info.id}>
-          <td>{info.id}</td>
-          <td>{info.student_id}</td>
-          <td>{info.event_id}</td>
+          <td className="name-col">
+            <span>{info.sname}</span>
+            <span className="id-below"> Student ID: {info.student_id} </span>
+          </td>
+          <td className="name-col">
+            <span>{info.ename}</span>
+            <span className="id-below"> Event ID: {info.event_id}</span>
+          </td>
           <td>{info.solve_1}</td>
           <td>{info.solve_2}</td>
           <td>{info.solve_3}</td>
@@ -113,9 +118,8 @@ export function TestResultTable() {
           <table className="data-table">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>StudentID</th>
-                <th>EventID</th>
+                <th>Student</th>
+                <th>Event</th>
                 <th>1</th>
                 <th>2</th>
                 <th>3</th>
@@ -126,7 +130,7 @@ export function TestResultTable() {
                 <th>Level Achieved</th>
                 <th>Grade Achieved</th>
                 <th>Name to be Printed</th>
-                <th>Actions</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>{DisplayData}</tbody>

@@ -99,6 +99,7 @@ header {
   /* justify-content: center; */
   /* align-items: center; */
   /* margin: 0px 20px; */
+  background-color: var(--bg-table-body);
   width: 100%;
   border-collapse: collapse;
   border-radius: 10px;
@@ -166,13 +167,13 @@ header {
 .tableContainer{
     background-color: none;
     border-radius: none;
-    height: 60vh;
-    padding: 0;
+    /* height: 80vh; */
+    padding-left: 10px;
     overflow: scroll;
 }
 
 .tableContainer::-webkit-scrollbar {
-  width: 10px;  /* width of the right side scrollbar */
+  width: 0px;  /* width of the right side scrollbar */
   height:10px;   /* width of the  bottom scrollbar */
 }
 
@@ -200,15 +201,15 @@ thead {
   top: 0;
   height: 42px;
   background-color: var(--bg-table-heading);
-  font-size: var(--fs-16);
+  font-size: var(--fs-12);
   z-index: 2;
 }
 
 tbody td {
-  padding: 7px;
+  padding: 3px;
   height: 55px;
   border-bottom: 1px solid mediumseagreen;
-  font-size: var(--fs-16);
+  font-size: var(--fs-12);
   font-weight: 500;
   text-align: center;
 }
@@ -218,19 +219,18 @@ tbody tr:hover {
 }
 
 .id-below {
+  display: block;
   font-size: var(--fs-12);
   color: var(--text-grey);
 }
+
 .id-col {
   min-width: 20px;
   /* text-align: left; */
 }
 
 .name-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+text-align: left;
 }
 
 
