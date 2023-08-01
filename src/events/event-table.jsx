@@ -78,8 +78,9 @@ export function EventTable({ type }) {
     }).map((info) => {
       return (
         <tr key={info.id}>
-          <td className="id-col">{info.id}</td>
-          <td className="name-col">{info.ename}</td>
+          <td className="name-col">
+          <span>{info.ename}</span>
+          <span className="id-below"> Event ID: {info.id} </span></td>
           <td>{info.edate.slice(0, 10)}</td>
           <td>
             <button
@@ -134,7 +135,7 @@ export function EventTable({ type }) {
         <table className="data-table">
           <thead>
             <tr>
-              <th colSpan={2}>EVENT</th>
+              <th>EVENT</th>
               <th>DATE</th>
               <th>ACTIONS</th>
             </tr>
@@ -142,7 +143,7 @@ export function EventTable({ type }) {
           <tbody>{DisplayData}</tbody>
         </table>
         </div>
-        
+
       </div>
     );
   }

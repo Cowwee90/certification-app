@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { TestResultForm } from "./test-result-form.jsx";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-export function AddTestResultButton() {
-  const [isShown, setIsShown] = useState(false);
+export function AddTestResultButton({ setIsShown }) {
 
   const handleClick = (event) => {
     // 👇️ toggle shown state
@@ -15,14 +14,14 @@ export function AddTestResultButton() {
   };
 
   return (
-    <div>
+    <>
       <button className="btn" onClick={handleClick}>
         <span className="btn-icon">
           <FontAwesomeIcon icon={faPlus} size="xl" />
         </span>
         <span className="btn-text">Add</span>
       </button>
-      {isShown && <TestResultForm />}
-    </div>
+    </>
+
   );
 }

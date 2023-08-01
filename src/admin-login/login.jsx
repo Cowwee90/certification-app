@@ -91,21 +91,6 @@ export default function LoginPage() {
         }}>
           {screen === "encrypt" ? "Encrypt" : "Decrypt"}
         </button>
-
-        <h1>Please Log In</h1>
-        <form className="login" style={{
-            marginTop: "10vh",
-          }}>
-   <label>
-     <p>Username</p>
-     <input type="text" />
-   </label>
-   <label>
-     <p>Password</p>
-     <input type="password" />
-   </label><br/><br/>
-     <button type="submit">Submit</button>
- </form>
       </div>
 
       {encrptedData || decrptedData ? (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AddTestResultButton } from "./show-add-result.jsx";
+import { TestResultForm } from "./test-result-form.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashCan,
@@ -9,6 +10,7 @@ import {
 export function TestResultTable() {
   const [data, setData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +39,7 @@ export function TestResultTable() {
       <div className="main-section">
         <header>
           <h1>Test Results</h1>
-          <AddTestResultButton />
+          <AddTestResultButton setIsShown={setIsShown} />
           {/* {isShown && <Form />} */}
         </header>
         {data ? (
@@ -46,6 +48,7 @@ export function TestResultTable() {
         ) : (
           <h2>Loading data...</h2>
         )}
+        {isShown && <TestResultForm />}
       </div>
     </>
   );

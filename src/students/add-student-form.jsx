@@ -48,7 +48,7 @@ export function Form() {
           placeholder="Birthday"
           onChange={(e) => setBirthday(e.target.value)}
         />
-        <br /><br /> 
+        <br /><br />
         <button type="submit">Add Student</button>
       </form>
     </div>
