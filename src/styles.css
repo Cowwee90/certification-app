@@ -33,7 +33,7 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0px;
   padding: 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* NAVIGATION BAR */
@@ -103,7 +103,6 @@ header {
   width: 100%;
   border-collapse: collapse;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0px 2px 3px var(--shadow);
   /* border: 1px solid black; */
 }
@@ -167,24 +166,8 @@ header {
 .tableContainer{
     background-color: none;
     border-radius: none;
-    /* height: 80vh; */
+    height: 70vh;
     padding-left: 10px;
-    overflow: scroll;
-}
-
-.tableContainer::-webkit-scrollbar {
-  width: 0px;  /* width of the right side scrollbar */
-  height:10px;   /* width of the  bottom scrollbar */
-}
-
-.tableContainer::-webkit-scrollbar-track {
-  background: white ;   /* color behind the moving bar */
-}
-
-.tableContainer::-webkit-scrollbar-thumb {
-  background-color: var(--accent);    /* color of the moving bar */
-  border-radius: 3px;       /* roundness of moving bar */
-  border: 2px solid white;  /* creates padding around moving bar*/
 }
 
 .data-table {
@@ -208,7 +191,6 @@ thead {
 tbody td {
   padding: 3px;
   height: 55px;
-  border-bottom: 1px solid mediumseagreen;
   font-size: var(--fs-12);
   font-weight: 500;
   text-align: center;
@@ -261,6 +243,7 @@ text-align: left;
   align-items: center;
   width: 130px;
   height: 40px;
+  margin-right: 10px;
   font-family: 'Inter', sans-serif;
   font-size: var(--fs-16);
   font-weight: 600;
@@ -269,6 +252,7 @@ text-align: left;
   outline: none;
   border-radius: 8px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -288,6 +272,7 @@ text-align: left;
   margin: 0 4px;
   background: transparent;
 }
+
 
 .delete-btn {
   background-color: var(--accent-delete);
