@@ -236,6 +236,23 @@ tbody tr:hover {
 
 /* BUTTONS */
 
+.submit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-16);
+    font-weight: 600;
+    background-color: var(--accent);
+    color: var(--text-light);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 .btn {
   display: inline-flex;
   /* position: absolute;
@@ -256,7 +273,6 @@ tbody tr:hover {
 
 .btn:hover {
   background-color: var(--accent-dark);
-  height:45px;
 }
 
 .btn:active {
@@ -285,13 +301,12 @@ tbody tr:hover {
   background-color: var(--accent-delete-darkest);
 }
 
-
 /* FORMS */
 
 .form-container {
   position: fixed;
   right: 25px;
-  top: 15vh;
+  top: 14vh;
   z-index: 3;
 }
 
@@ -304,11 +319,10 @@ tbody tr:hover {
 }
 
 .form-wrap input {
-  margin-bottom: 9px;
-  width: 90%;
+  margin-bottom: 7px;
+  width: 100%;
   height: 22px;
   font-size: 18px;
-  padding-left: 10px;
 }
 
 .dropdown {

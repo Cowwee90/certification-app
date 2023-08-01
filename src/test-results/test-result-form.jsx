@@ -264,7 +264,7 @@ export function TestResultForm() {
             autoComplete="off"
             onChange={(e) => setPrintedName(e.target.value)}
           />
-          <button type="submit">Add Record</button>
+          <button className="submit-btn" type="submit">Add Record</button>
 
           <div className="dropdown">
             {students
