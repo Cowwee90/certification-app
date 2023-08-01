@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Form } from "./add-student-form.jsx";
 import { AddStudentButton } from "../students/show-form.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashCan,
   faMagnifyingGlass,
@@ -10,6 +11,7 @@ import "../styles.css";
 export function StudentTable() {
   const [data, setData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,19 +90,19 @@ export function StudentTable() {
         </div>
 
         <div className="tableContainer">
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Date of Birth</th>
-              <th>Highest Level</th>
-              <th>Best Grade</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{DisplayData}</tbody>
-        </table>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Highest Level</th>
+                <th>Best Grade</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>{DisplayData}</tbody>
+          </table>
         </div>
       </div>
     );
@@ -110,9 +112,10 @@ export function StudentTable() {
     <div className="main-section">
       <header>
         <h1>All Students</h1>
-        <AddStudentButton />
+        <AddStudentButton setIsShown={setIsShown} />
       </header>
       {data ? showJsonInTable(data) : <h2>Loading data...</h2>}
+      {isShown && <Form />}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+const Draggable = require("react-draggable");
 
 export function EForm() {
   const [eventName, setEventName] = useState("");
@@ -32,25 +33,27 @@ export function EForm() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h3>Add New Event</h3>
-        <input
-          type="text"
-          value={eventName}
-          placeholder="Name"
-          onChange={(e) => setEventName(e.target.value)}
-        />
-        <br />
-        <input
-          type="date"
-          value={eventDate}
-          placeholder="Birthday"
-          onChange={(e) => setEventDate(e.target.value)}
-        />
-        <br />
-        <button type="submit">Add Event</button>
-      </form>
-    </div>
+    <Draggable>
+      <div className="form-container">
+        <form className="form-wrap" onSubmit={handleSubmit}>
+          <h3>Add New Event</h3>
+          <input
+            type="text"
+            value={eventName}
+            placeholder="Name"
+            onChange={(e) => setEventName(e.target.value)}
+          />
+          <input
+            type="date"
+            value={eventDate}
+            placeholder="Birthday"
+            onChange={(e) => setEventDate(e.target.value)}
+          />
+          <button className="btn" type="submit">
+            <span className="btn-text">Add Event</span>
+          </button>
+        </form>
+      </div>
+    </Draggable>
   );
 }

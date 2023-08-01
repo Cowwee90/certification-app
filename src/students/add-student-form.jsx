@@ -1,4 +1,5 @@
 import { useState } from "react";
+const Draggable = require("react-draggable");
 
 export function Form() {
   const [name, setName] = useState("");
@@ -32,25 +33,25 @@ export function Form() {
   };
 
   return (
-    <div className="addstudent">
-      <form onSubmit={handleSubmit}>
-        <h3>Add New Student</h3>
-        <input
-          type="text"
-          value={name}
-          placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br /><br />
-        <input
-          type="date"
-          value={birthday}
-          placeholder="Birthday"
-          onChange={(e) => setBirthday(e.target.value)}
-        />
-        <br /><br />
-        <button type="submit">Add Student</button>
-      </form>
-    </div>
+    <Draggable>
+      <div className="form-container">
+        <form className="form-wrap" onSubmit={handleSubmit}>
+          <h3>Add New Student</h3>
+          <input
+            type="text"
+            value={name}
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="date"
+            value={birthday}
+            placeholder="Birthday"
+            onChange={(e) => setBirthday(e.target.value)}
+          />
+          <button type="submit">Add Student</button>
+        </form>
+      </div>
+    </Draggable>
   );
 }

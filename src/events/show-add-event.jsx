@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { EForm } from "./add-event-form.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-export function AddEventButton() {
-  const [isShown, setIsShown] = useState(false);
-  const handleClick = (event) => {
+export function AddEventButton({ setIsShown }) {
+  const handleClick = () => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
 
@@ -21,7 +18,6 @@ export function AddEventButton() {
         </span>
         <span className="btn-text">Add</span>
       </button>
-      {isShown && <EForm />}
     </>
   );
 }

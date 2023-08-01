@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export function AddTestResultButton({ setIsShown }) {
-
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
@@ -22,6 +21,5 @@ export function AddTestResultButton({ setIsShown }) {
         <span className="btn-text">Add</span>
       </button>
     </>
-
   );
 }

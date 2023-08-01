@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddEventButton } from "../events/show-add-event.jsx";
+import { EForm } from "./add-event-form.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashCan,
   faMagnifyingGlass,
@@ -10,6 +11,7 @@ import "../styles.css";
 export function EventTable({ type }) {
   const [data, setData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
+  const [isShown, setIsShown] = useState(false);
 
   const date = new Date().toJSON().slice(0, 10);
 
@@ -51,7 +53,7 @@ export function EventTable({ type }) {
     <div className="main-section">
       <header>
         <h1>{heading}</h1>
-        <AddEventButton />
+        <AddEventButton setIsShown={setIsShown} />
         {/* {isShown && <Form />} */}
       </header>
       {data ? (
@@ -60,6 +62,7 @@ export function EventTable({ type }) {
       ) : (
         <h2>Loading data...</h2>
       )}
+      {isShown && <EForm />}
     </div>
   );
 
@@ -79,8 +82,9 @@ export function EventTable({ type }) {
       return (
         <tr key={info.id}>
           <td className="name-col">
-          <span>{info.ename}</span>
-          <span className="id-below"> Event ID: {info.id} </span></td>
+            <span>{info.ename}</span>
+            <span className="id-below"> Event ID: {info.id} </span>
+          </td>
           <td>{info.edate.slice(0, 10)}</td>
           <td>
             <button
@@ -132,18 +136,17 @@ export function EventTable({ type }) {
         </div>
 
         <div className="tableContainer">
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>EVENT</th>
-              <th>DATE</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody>{DisplayData}</tbody>
-        </table>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>EVENT</th>
+                <th>DATE</th>
+                <th>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>{DisplayData}</tbody>
+          </table>
         </div>
-
       </div>
     );
   }

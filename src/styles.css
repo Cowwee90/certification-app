@@ -311,6 +311,8 @@ tbody tr:hover {
 }
 
 .form-wrap {
+  display: flex;
+  flex-direction: column;
   width: 20vw;
   background-color: white;
   padding: 20px;
@@ -319,10 +321,10 @@ tbody tr:hover {
 }
 
 .form-wrap input {
-  margin-bottom: 7px;
-  width: 100%;
+  margin-bottom: 1.5rem;
+  /* width: 100%; */
   height: 22px;
-  font-size: 18px;
+  font-size: var(--fs-16);
 }
 
 .dropdown {
@@ -357,12 +359,19 @@ h1 {
 }
 
 h2 {
+  margin: 0;
   font-size: var(--fs-24);
   font-weight: 700;
   text-align: center;
 }
 
 h3 {
+  margin: 0;
+  margin-bottom: 1rem;
   font-size: var(--fs-16);
   font-weight: 700;
+}
+
+h4 {
+  margin: 0;
 }

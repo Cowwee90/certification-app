@@ -42,12 +42,7 @@ export function TestResultTable() {
           <AddTestResultButton setIsShown={setIsShown} />
           {/* {isShown && <Form />} */}
         </header>
-        {data ? (
-          //<pre>{JSON.stringify(data, null, 2)}</pre>
-          showJsonInTable(data)
-        ) : (
-          <h2>Loading data...</h2>
-        )}
+        {data ? showJsonInTable(data) : <h2>Loading data...</h2>}
         {isShown && <TestResultForm />}
       </div>
     </>
@@ -115,27 +110,28 @@ export function TestResultTable() {
         </div>
 
         <div className="tableContainer">
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>StudentID</th>
-              <th>EventID</th>
-              <th>1</th>
-              <th>2</th>
-              <th>3</th>
-              <th>4</th>
-              <th>5</th>
-              <th>Average</th>
-              <th>Level Attempted</th>
-              <th>Level Achieved</th>
-              <th>Grade Achieved</th>
-              <th>Name to be Printed</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{DisplayData}</tbody>
-        </table></div>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>StudentID</th>
+                <th>EventID</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>Average</th>
+                <th>Level Attempted</th>
+                <th>Level Achieved</th>
+                <th>Grade Achieved</th>
+                <th>Name to be Printed</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>{DisplayData}</tbody>
+          </table>
+        </div>
       </div>
     );
   }

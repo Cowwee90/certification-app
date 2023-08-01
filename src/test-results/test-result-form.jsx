@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
-const Draggable = require('react-draggable');
-const DraggableCore = Draggable.DraggableCore;
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faGripLinesVertical,
-//   faSearch,
-// } from "@fortawesome/free-solid-svg-icons";
+const Draggable = require("react-draggable");
 
 export function TestResultForm() {
   const [searchInput, setSearchInput] = useState("");
@@ -171,127 +165,133 @@ export function TestResultForm() {
 
   return (
     <>
-    <Draggable>
-      <div className="form-container">
-        <form className="form-wrap" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="searchbar"
-            value={searchInput}
-            onChange={(e) => searchBarOnChange(e)}
-            placeholder="Enter name"
-            autoComplete="off"
-          />
-          <input type="hidden" value={studID} readOnly />
-          <input type="hidden" value={eventID} readOnly />
-          <h4>Please enter results in seconds. <br/>Example: 1min 25.566s = 85.56s </h4>
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Attempt 1"
-            value={solves[1]}
-            onChange={(e) => setSolvesWrapper("1", e.target.value)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Attempt 2"
-            value={solves[2]}
-            onChange={(e) => setSolvesWrapper("2", e.target.value)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Attempt 3"
-            value={solves[3]}
-            onChange={(e) => setSolvesWrapper("3", e.target.value)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Attempt 4"
-            value={solves[4]}
-            onChange={(e) => setSolvesWrapper("4", e.target.value)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Attempt 5"
-            value={solves[5]}
-            onChange={(e) => setSolvesWrapper("5", e.target.value)}
-            autoComplete="off"
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Average of 5"
-            value={"Average of 5: " + avg}
-            readOnly
-          />
-          <input
-            type="number"
-            id="test-result-form-field"
-            placeholder="Level attempted"
-            value={levelAttempted}
-            min="1"
-            max="10"
-            autoComplete="off"
-            onChange={(e) => setLevelAttempted(e.target.value)}
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Level achieved"
-            value={levelAchieved}
-            readOnly
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            placeholder="Grade achieved"
-            value={gradeAchieved}
-            readOnly
-          />
-          <input
-            type="text"
-            id="test-result-form-field"
-            value={printedName}
-            placeholder="Name to be printed"
-            autoComplete="off"
-            onChange={(e) => setPrintedName(e.target.value)}
-          />
-          <button className="submit-btn" type="submit">Add Record</button>
+      <Draggable>
+        <div className="form-container">
+          <form className="form-wrap" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              id="searchbar"
+              value={searchInput}
+              onChange={(e) => searchBarOnChange(e)}
+              placeholder="Enter name"
+              autoComplete="off"
+            />
+            <input type="hidden" value={studID} readOnly />
+            <input type="hidden" value={eventID} readOnly />
+            <h4>
+              Please enter results in seconds. <br />
+              Example: 1min 25.566s = 85.56s{" "}
+            </h4>
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Attempt 1"
+              value={solves[1]}
+              onChange={(e) => setSolvesWrapper("1", e.target.value)}
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Attempt 2"
+              value={solves[2]}
+              onChange={(e) => setSolvesWrapper("2", e.target.value)}
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Attempt 3"
+              value={solves[3]}
+              onChange={(e) => setSolvesWrapper("3", e.target.value)}
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Attempt 4"
+              value={solves[4]}
+              onChange={(e) => setSolvesWrapper("4", e.target.value)}
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Attempt 5"
+              value={solves[5]}
+              onChange={(e) => setSolvesWrapper("5", e.target.value)}
+              autoComplete="off"
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Average of 5"
+              value={"Average of 5: " + avg}
+              readOnly
+            />
+            <input
+              type="number"
+              id="test-result-form-field"
+              placeholder="Level attempted"
+              value={levelAttempted}
+              min="1"
+              max="10"
+              autoComplete="off"
+              onChange={(e) => setLevelAttempted(e.target.value)}
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Level achieved"
+              value={levelAchieved}
+              readOnly
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              placeholder="Grade achieved"
+              value={gradeAchieved}
+              readOnly
+            />
+            <input
+              type="text"
+              id="test-result-form-field"
+              value={printedName}
+              placeholder="Name to be printed"
+              autoComplete="off"
+              onChange={(e) => setPrintedName(e.target.value)}
+            />
+            <button className="submit-btn" type="submit">
+              Add Record
+            </button>
 
-          <div className="dropdown">
-            {students
-              .filter((item) => {
-                const searchInputToLower = searchInput.toLowerCase();
-                const storedNameToLower = item.sname.toLowerCase();
+            <div className="dropdown">
+              {students
+                .filter((item) => {
+                  const searchInputToLower = searchInput.toLowerCase();
+                  const storedNameToLower = item.sname.toLowerCase();
 
-                return (
-                  !isSelected &&
-                  searchInput &&
-                  storedNameToLower.includes(searchInputToLower) &&
-                  searchInputToLower !== storedNameToLower
-                );
-              })
-              .map((item) => (
-                <div
-                  className="search-result"
-                  key={item.id}
-                  onClick={() => {
-                    onSearch(item.sname, item.id);
-                  }}>
-                  {item.sname} <br /> {item.birthday.slice(0,10)}{" "}
-                </div>
-              ))}
-          </div>
-        </form>
-      </div>
+                  return (
+                    !isSelected &&
+                    searchInput &&
+                    storedNameToLower.includes(searchInputToLower) &&
+                    searchInputToLower !== storedNameToLower
+                  );
+                })
+                .map((item) => (
+                  <div
+                    className="search-result"
+                    key={item.id}
+                    onClick={() => {
+                      onSearch(item.sname, item.id);
+                    }}
+                  >
+                    {item.sname} <br /> {item.birthday.slice(0, 10)}{" "}
+                  </div>
+                ))}
+            </div>
+          </form>
+        </div>
       </Draggable>
     </>
   );
