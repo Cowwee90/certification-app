@@ -52,7 +52,7 @@ export function TestResultTable() {
       <div className="main-section">
         <header>
           <h1>Test Results</h1>
-          <AddTestResultButton setIsShown={setIsShown} />
+          {eventID && <AddTestResultButton setIsShown={setIsShown} />}
           {/* {isShown && <Form />} */}
         </header>
         {data ? showJsonInTable(data) : <h2>Loading data...</h2>}

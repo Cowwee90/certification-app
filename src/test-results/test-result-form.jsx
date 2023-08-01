@@ -143,7 +143,7 @@ export function TestResultForm({ eventID }) {
             solve_4: solves[4],
             solve_5: solves[5],
             average_of_5: avg,
-            level_attempted: levelAttempted,
+            level_attempted: levelAttempted === "" ? null : levelAttempted,
             level_achieved: levelAchieved,
             grade_achieved: gradeAchieved,
             name_to_be_printed: printedName,
@@ -173,6 +173,7 @@ export function TestResultForm({ eventID }) {
               onChange={(e) => searchBarOnChange(e)}
               placeholder="Enter name"
               autoComplete="off"
+              required
             />
             <input type="hidden" value={studID} readOnly />
             <input type="hidden" value={eventID} readOnly />
@@ -187,6 +188,7 @@ export function TestResultForm({ eventID }) {
               value={solves[1]}
               onChange={(e) => setSolvesWrapper("1", e.target.value)}
               autoComplete="off"
+              required
             />
             <input
               type="text"
@@ -195,6 +197,7 @@ export function TestResultForm({ eventID }) {
               value={solves[2]}
               onChange={(e) => setSolvesWrapper("2", e.target.value)}
               autoComplete="off"
+              required
             />
             <input
               type="text"
@@ -203,6 +206,7 @@ export function TestResultForm({ eventID }) {
               value={solves[3]}
               onChange={(e) => setSolvesWrapper("3", e.target.value)}
               autoComplete="off"
+              required
             />
             <input
               type="text"
@@ -211,6 +215,7 @@ export function TestResultForm({ eventID }) {
               value={solves[4]}
               onChange={(e) => setSolvesWrapper("4", e.target.value)}
               autoComplete="off"
+              required
             />
             <input
               type="text"
@@ -219,6 +224,7 @@ export function TestResultForm({ eventID }) {
               value={solves[5]}
               onChange={(e) => setSolvesWrapper("5", e.target.value)}
               autoComplete="off"
+              required
             />
             <input
               type="text"
@@ -258,6 +264,7 @@ export function TestResultForm({ eventID }) {
               placeholder="Name to be printed"
               autoComplete="off"
               onChange={(e) => setPrintedName(e.target.value)}
+              required
             />
             <button className="submit-btn" type="submit">
               Add Record

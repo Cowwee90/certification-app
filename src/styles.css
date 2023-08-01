@@ -33,7 +33,7 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0px;
   padding: 0px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 /* NAVIGATION BAR */
@@ -168,6 +168,22 @@ header {
     border-radius: none;
     height: 70vh;
     padding-left: 10px;
+    overflow: scroll;
+}
+
+.tableContainer::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+  height:0;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: var(--bg-table-body);        /* color of the tracking area */
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background-color: var(--accent);    /* color of the scroll thumb */
+  border-radius: 25px;       /* roundness of the scroll thumb */
+  border: 2px solid white;  /* creates padding around scroll thumb */
 }
 
 .data-table {
@@ -243,7 +259,7 @@ text-align: left;
   align-items: center;
   width: 130px;
   height: 40px;
-  margin-right: 10px;
+  margin: 0 5px;
   font-family: 'Inter', sans-serif;
   font-size: var(--fs-16);
   font-weight: 600;
