@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { AddEventButton } from "../events/show-add-event.jsx";
 import { EForm } from "./add-event-form.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -87,6 +88,14 @@ export function EventTable({ type }) {
           </td>
           <td>{info.edate.slice(0, 10)}</td>
           <td>
+            <button className="btn">
+              <Link to={`/testresults/${info.id}`}>
+                <span className="btn-icon">
+                  <FontAwesomeIcon icon={faTrashCan} size="xl" />
+                </span>
+                <span className="btn-text">Results</span>
+              </Link>
+            </button>
             <button
               className="btn delete-btn"
               onClick={() => deleteEvent(info.id)}

@@ -1,9 +1,9 @@
 import { TestResultTable } from "../test-results/test-result-table.jsx";
 
-const TestResults = () => {
+const TestResults = ({ eventID }) => {
   return (
     <>
-      <TestResultTable />
+      <TestResultTable eventID={eventID} />
     </>
   );
 };

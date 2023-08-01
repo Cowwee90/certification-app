@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AddTestResultButton } from "./show-add-result.jsx";
 import { TestResultForm } from "./test-result-form.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useParams } from "react-router-dom";
 import {
   faTrashCan,
   faMagnifyingGlass,
@@ -11,6 +12,7 @@ export function TestResultTable() {
   const [data, setData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [isShown, setIsShown] = useState(false);
+  const { eventID } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,12 +20,23 @@ export function TestResultTable() {
         const headers = {
           "User-Agent": "testingAgent", // not necessary
         };
-        const response = await fetch(
-          "https://certification-api.glitch.me/testresults",
-          {
-            headers,
-          }
-        );
+        let response;
+        if (eventID) {
+          response = await fetch(
+            `https://certification-api.glitch.me/testresults?eid=${eventID}`,
+            {
+              headers,
+            }
+          );
+        } else {
+          response = await fetch(
+            `https://certification-api.glitch.me/testresults`,
+            {
+              headers,
+            }
+          );
+        }
+
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -32,7 +45,7 @@ export function TestResultTable() {
     };
 
     fetchData();
-  }, []);
+  }, [eventID]);
 
   return (
     <>
@@ -43,7 +56,7 @@ export function TestResultTable() {
           {/* {isShown && <Form />} */}
         </header>
         {data ? showJsonInTable(data) : <h2>Loading data...</h2>}
-        {isShown && <TestResultForm />}
+        {isShown && <TestResultForm eventID={eventID} />}
       </div>
     </>
   );
@@ -53,7 +66,6 @@ export function TestResultTable() {
       if (searchInput) {
         const searchInputToLower = searchInput.toLowerCase();
         const nameToLower = info.name_to_be_printed.toLowerCase();
-
         return (
           searchInput &&
           (nameToLower.includes(searchInputToLower) ||
@@ -67,10 +79,13 @@ export function TestResultTable() {
             <span>{info.sname}</span>
             <span className="id-below"> Student ID: {info.student_id} </span>
           </td>
-          <td className="name-col">
-            <span>{info.ename}</span>
-            <span className="id-below"> Event ID: {info.event_id}</span>
-          </td>
+          {!eventID && (
+            <td className="name-col">
+              <span>{info.ename}</span>
+              <span className="id-below"> Event ID: {info.event_id}</span>
+            </td>
+          )}
+
           <td>{info.solve_1}</td>
           <td>{info.solve_2}</td>
           <td>{info.solve_3}</td>
@@ -119,7 +134,7 @@ export function TestResultTable() {
             <thead>
               <tr>
                 <th>Student</th>
-                <th>Event</th>
+                {!eventID && <th>Event</th>}
                 <th>1</th>
                 <th>2</th>
                 <th>3</th>

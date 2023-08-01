@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 const Draggable = require("react-draggable");
 
-export function TestResultForm() {
+export function TestResultForm({ eventID }) {
   const [searchInput, setSearchInput] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [studID, setStudID] = useState("");
-  const [eventID, setEventID] = useState(""); // find where it's used
   const [students, setStudents] = useState([]);
   const [solves, setSolves] = useState({ 1: "", 2: "", 3: "", 4: "", 5: "" });
   const [avg, setAvg] = useState("DNF");
@@ -22,7 +21,6 @@ export function TestResultForm() {
         );
         const jsonData = await response.json();
         setStudents(jsonData);
-        setEventID(3); // TODO: remove
       } catch (error) {
         console.error("Error fetching data:", error);
       }
