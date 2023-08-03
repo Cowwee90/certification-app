@@ -94,7 +94,7 @@ export function EventTable({ type }) {
               className="btn"
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faPencil} size="xl" />
+                <FontAwesomeIcon icon={faPencil} />
               </span>
               <span className="btn-text">Results</span>
             </Link>
@@ -103,7 +103,7 @@ export function EventTable({ type }) {
               onClick={() => deleteEvent(info.id)}
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faTrashCan} size="l" />
+                <FontAwesomeIcon icon={faTrashCan} />
               </span>
               <span className="btn-text">Delete</span>
             </button>
