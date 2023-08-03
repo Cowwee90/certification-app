@@ -12,7 +12,12 @@ export function TestResultTable() {
   const [data, setData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [isShown, setIsShown] = useState(false);
-  const { eventID } = useParams();
+  const { eventInfo } = useParams();
+  let eventID, eventName;
+
+  if (eventInfo) {
+    [eventID, eventName] = eventInfo.split("-");
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +26,7 @@ export function TestResultTable() {
           "User-Agent": "testingAgent", // not necessary
         };
         let response;
-        if (eventID) {
+        if (eventInfo) {
           response = await fetch(
             `https://certification-api.glitch.me/testresults?eid=${eventID}`,
             {
@@ -45,15 +50,18 @@ export function TestResultTable() {
     };
 
     fetchData();
-  }, [eventID]);
+  }, [eventInfo, eventID]);
 
   return (
     <>
       <div className="main-section">
         <header>
-          <h1>Test Results</h1>
-          {eventID && <AddTestResultButton setIsShown={setIsShown} />}
-          {/* {isShown && <Form />} */}
+          <div className="page-title">
+            <h1 className="title">Test Results</h1>
+            {eventInfo && <h2 className="subtitle">{eventName}</h2>}
+          </div>
+
+          {eventInfo && <AddTestResultButton setIsShown={setIsShown} />}
         </header>
         {data ? showJsonInTable(data) : <h2>Loading data...</h2>}
         {isShown && <TestResultForm eventID={eventID} />}
@@ -79,7 +87,7 @@ export function TestResultTable() {
             <span>{info.sname}</span>
             <span className="id-below"> Student ID: {info.student_id} </span>
           </td>
-          {!eventID && (
+          {!eventInfo && (
             <td className="name-col">
               <span>{info.ename}</span>
               <span className="id-below"> Event ID: {info.event_id}</span>
@@ -92,7 +100,7 @@ export function TestResultTable() {
           <td>{info.solve_4}</td>
           <td>{info.solve_5}</td>
           <td>{info.average_of_5}</td>
-          <td>{info.level_attempted}</td>
+          <td>{info.level_attempted ? info.level_achieved : "null"}</td>
           <td>{info.level_achieved}</td>
           <td>{info.grade_achieved}</td>
           <td>{info.name_to_be_printed}</td>
@@ -102,7 +110,7 @@ export function TestResultTable() {
               onClick={() => deleteResult(info.id)}
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faTrashCan} size="l" />
+                <FontAwesomeIcon icon={faTrashCan} />
               </span>
               <span className="btn-text">Delete</span>
             </button>
@@ -134,7 +142,7 @@ export function TestResultTable() {
             <thead>
               <tr>
                 <th>Student</th>
-                {!eventID && <th>Event</th>}
+                {!eventInfo && <th>Event</th>}
                 <th>1</th>
                 <th>2</th>
                 <th>3</th>

@@ -86,11 +86,20 @@ body {
 header {
   display: flex;
   /* flex-direction: row; */
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 24px;
   padding: 12px;
   width: 100%;
+}
+
+.title {
+  text-align: left;
+}
+
+.subtitle {
+  text-align: left;
+  color: var(--text-grey);
 }
 
 .main-body {

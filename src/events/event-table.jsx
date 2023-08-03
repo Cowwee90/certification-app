@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashCan,
   faMagnifyingGlass,
-  faPencil
+  faPencil,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles.css";
 
@@ -88,13 +88,16 @@ export function EventTable({ type }) {
             <span className="id-below"> Event ID: {info.id} </span>
           </td>
           <td>{info.edate.slice(0, 10)}</td>
-          <td className="action-col">
-              <Link to={`/testresults/${info.id}`} className="btn">
-                <span className="btn-icon">
-                  <FontAwesomeIcon icon={faPencil} size="l" />
-                </span>
-                <span className="btn-text">Results</span>
-              </Link>
+          <td>
+            <Link
+              to={`/testresults/${info.id + "-" + info.ename}`}
+              className="btn"
+            >
+              <span className="btn-icon">
+                <FontAwesomeIcon icon={faPencil} size="xl" />
+              </span>
+              <span className="btn-text">Results</span>
+            </Link>
             <button
               className="btn delete-btn"
               onClick={() => deleteEvent(info.id)}
