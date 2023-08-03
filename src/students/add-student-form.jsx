@@ -49,7 +49,7 @@ export function Form() {
             placeholder="Birthday"
             onChange={(e) => setBirthday(e.target.value)}
           />
-          <button type="submit">Add Student</button>
+          <button type="submit" className="btn"><span className="btn-text">Add Student</span></button>
         </form>
       </div>
     </Draggable>

@@ -57,13 +57,13 @@ export function StudentTable() {
           <td>{info.birthday.slice(0, 10)}</td>
           <td>{info.highest_level}</td>
           <td>{info.best_grade}</td>
-          <td>
+          <td className="action-col">
             <button
               className="btn delete-btn"
               onClick={() => deleteStudent(info.id)}
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faTrashCan} size="xl" />
+                <FontAwesomeIcon icon={faTrashCan} size="l" />
               </span>
               <span className="btn-text">Delete</span>
             </button>

@@ -267,7 +267,7 @@ export function TestResultForm({ eventID }) {
               required
             />
             <button className="submit-btn" type="submit">
-              Add Record
+              <span className="btn-text">Add Record</span>
             </button>
 
             <div className="dropdown">
