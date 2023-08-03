@@ -88,10 +88,10 @@ export function EventTable({ type }) {
             <span className="id-below"> Event ID: {info.id} </span>
           </td>
           <td>{info.edate.slice(0, 10)}</td>
-          <td>
+          <td className="action-col">
               <Link to={`/testresults/${info.id}`} className="btn">
                 <span className="btn-icon">
-                  <FontAwesomeIcon icon={faPencil} size="xl" />
+                  <FontAwesomeIcon icon={faPencil} size="l" />
                 </span>
                 <span className="btn-text">Results</span>
               </Link>
@@ -100,7 +100,7 @@ export function EventTable({ type }) {
               onClick={() => deleteEvent(info.id)}
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faTrashCan} size="xl" />
+                <FontAwesomeIcon icon={faTrashCan} size="l" />
               </span>
               <span className="btn-text">Delete</span>
             </button>

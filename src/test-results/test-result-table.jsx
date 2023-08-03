@@ -96,13 +96,13 @@ export function TestResultTable() {
           <td>{info.level_achieved}</td>
           <td>{info.grade_achieved}</td>
           <td>{info.name_to_be_printed}</td>
-          <td>
+          <td className="action-col">
             <button
               className="btn delete-btn"
               onClick={() => deleteResult(info.id)}
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faTrashCan} size="xl" />
+                <FontAwesomeIcon icon={faTrashCan} size="l" />
               </span>
               <span className="btn-text">Delete</span>
             </button>
@@ -141,8 +141,8 @@ export function TestResultTable() {
                 <th>4</th>
                 <th>5</th>
                 <th>Average</th>
-                <th>Level Attempted</th>
-                <th>Level Achieved</th>
+                <th className="long-tablehead-name">Level Attempted</th>
+                <th className="long-tablehead-name">Level Achieved</th>
                 <th>Grade Achieved</th>
                 <th>Name to be Printed</th>
                 <th>Delete</th>
