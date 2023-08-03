@@ -63,7 +63,7 @@ export function StudentTable() {
               onClick={() => deleteStudent(info.id)}
             >
               <span className="btn-icon">
-                <FontAwesomeIcon icon={faTrashCan} size="l" />
+                <FontAwesomeIcon icon={faTrashCan} />
               </span>
               <span className="btn-text">Delete</span>
             </button>

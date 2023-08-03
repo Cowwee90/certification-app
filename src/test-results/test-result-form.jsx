@@ -8,9 +8,10 @@ export function TestResultForm({ eventID }) {
   const [students, setStudents] = useState([]);
   const [solves, setSolves] = useState({ 1: "", 2: "", 3: "", 4: "", 5: "" });
   const [avg, setAvg] = useState("DNF");
-  const [levelAchieved, setLevelAchieved] = useState("");
-  const [gradeAchieved, setGradeAchieved] = useState("");
   const [levelAttempted, setLevelAttempted] = useState("");
+  const [gradeAttempted, setGradeAttempted] = useState("");
+  const [levelAchieved, setLevelAchieved] = useState("");
+  const [result, setResult] = useState("");
   const [printedName, setPrintedName] = useState("");
 
   useEffect(() => {
@@ -54,12 +55,16 @@ export function TestResultForm({ eventID }) {
       if (curr !== "") {
         count++;
       }
-      if (curr === "DNF") {
+      if (curr === "DNF" || curr === "D" || curr === "DN" || curr === "") {
         numDNFs++;
       } else {
         sum += Number(curr);
-        if (curr > max) max = curr;
-        if (curr < min) min = curr;
+        if (curr > max) {
+          max = Number(curr);
+        }
+        if (curr < min) {
+          min = Number(curr);
+        }
       }
     }
     if (count === 5) {
@@ -91,25 +96,38 @@ export function TestResultForm({ eventID }) {
   }, [avg]);
 
   useEffect(() => {
-    if (levelAchieved === "") setGradeAchieved("");
-    else if (levelAchieved === 1) {
-      setGradeAchieved("Beginner");
-    } else if (levelAchieved === 2 || levelAchieved === 3) {
-      setGradeAchieved("Intermediate");
+    const intLevelAttempted = Number(levelAttempted);
+    if (intLevelAttempted === "") setGradeAttempted("");
+    else if (intLevelAttempted === 1) {
+      setGradeAttempted("Beginner");
+    } else if (intLevelAttempted === 2 || intLevelAttempted === 3) {
+      setGradeAttempted("Intermediate");
     } else if (
-      levelAchieved === 4 ||
-      levelAchieved === 5 ||
-      levelAchieved === 6
+      intLevelAttempted === 4 ||
+      intLevelAttempted === 5 ||
+      intLevelAttempted === 6
     ) {
-      setGradeAchieved("Advanced");
-    } else if (levelAchieved === 7 || levelAchieved === 8) {
-      setGradeAchieved("Professional");
-    } else if (levelAchieved === 9 || levelAchieved === 10) {
-      setGradeAchieved("Master");
+      setGradeAttempted("Advanced");
+    } else if (intLevelAttempted === 7 || intLevelAttempted === 8) {
+      setGradeAttempted("Professional");
+    } else if (intLevelAttempted === 9 || intLevelAttempted === 10) {
+      setGradeAttempted("Master");
     } else {
-      setGradeAchieved("Invalid grade");
+      setGradeAttempted("Invalid grade");
     }
-  }, [levelAchieved]);
+  }, [levelAttempted]);
+
+  useEffect(() => {
+    if (
+      levelAchieved < levelAttempted ||
+      levelAchieved === "" ||
+      levelAttempted === ""
+    ) {
+      setResult("Fail");
+    } else {
+      setResult("Pass");
+    }
+  }, [levelAchieved, levelAttempted]);
 
   const onSearch = (searchedName, searchedID) => {
     setSearchInput(searchedName);
@@ -143,16 +161,16 @@ export function TestResultForm({ eventID }) {
             solve_4: solves[4],
             solve_5: solves[5],
             average_of_5: avg,
-            level_attempted: levelAttempted === "" ? null : levelAttempted,
-            level_achieved: levelAchieved,
-            grade_achieved: gradeAchieved,
+            level_attempted: levelAttempted,
+            grade_attempted: gradeAttempted,
+            result: result === "" ? null : result,
             name_to_be_printed: printedName,
           }),
         }
       );
       await res.json();
       if (res.status === 201) {
-        alert("success");
+        alert("Test result has been added");
       } else {
         alert("Some error occured");
       }
@@ -246,15 +264,15 @@ export function TestResultForm({ eventID }) {
             <input
               type="text"
               id="test-result-form-field"
-              placeholder="Level achieved"
-              value={levelAchieved}
+              placeholder="Grade attempted"
+              value={gradeAttempted}
               readOnly
             />
             <input
               type="text"
               id="test-result-form-field"
-              placeholder="Grade achieved"
-              value={gradeAchieved}
+              placeholder="Result"
+              value={result}
               readOnly
             />
             <input

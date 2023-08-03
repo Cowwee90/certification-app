@@ -100,9 +100,9 @@ export function TestResultTable() {
           <td>{info.solve_4}</td>
           <td>{info.solve_5}</td>
           <td>{info.average_of_5}</td>
-          <td>{info.level_attempted ? info.level_achieved : "null"}</td>
-          <td>{info.level_achieved}</td>
-          <td>{info.grade_achieved}</td>
+          <td>{info.level_attempted ? info.level_attempted : "null"}</td>
+          <td>{info.grade_attempted}</td>
+          <td>{info.result}</td>
           <td>{info.name_to_be_printed}</td>
           <td className="action-col">
             <button
@@ -150,8 +150,8 @@ export function TestResultTable() {
                 <th>5</th>
                 <th>Average</th>
                 <th className="long-tablehead-name">Level Attempted</th>
-                <th className="long-tablehead-name">Level Achieved</th>
-                <th>Grade Achieved</th>
+                <th className="long-tablehead-name">Grade Attempted</th>
+                <th>Result</th>
                 <th>Name to be Printed</th>
                 <th>Delete</th>
               </tr>
