@@ -9,10 +9,16 @@ import Students from "./pages/Students.jsx";
 import Events from "./pages/Events.jsx";
 import EventsUpcoming from "./pages/EventsUpcoming.jsx";
 import EventsPast from "./pages/EventsPast.jsx";
-import LoginPage from "./admin-login/login.jsx";
+import Login from "./pages/Login.jsx";
 import NoPage from "./pages/NoPage.jsx";
+import useToken from "./useToken.jsx";
+import { useEffect } from "react";
 
 export default function App() {
+  const { token, setToken } = useToken();
+  useEffect(() => {}, [token]);
+
+  if (!token) return <Login setToken={setToken} />;
   return (
     <Router>
       <Routes>
@@ -25,7 +31,6 @@ export default function App() {
           <Route path="testresults" element={<TestResults />} />
           <Route path="testresults/:eventInfo" element={<TestResults />} />
 
-          <Route path="admin-login" element={<LoginPage />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

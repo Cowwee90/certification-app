@@ -78,16 +78,15 @@ export function StudentTable() {
           <div className="search-bar-wrapper">
             <span className="search-bar-icon">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-
-              <input
-                type="text"
-                className="search-bar"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Enter name"
-                autoComplete="off"
-              />
             </span>
+            <input
+              type="text"
+              className="search-bar"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Enter name"
+              autoComplete="off"
+            />
           </div>
         </div>
 

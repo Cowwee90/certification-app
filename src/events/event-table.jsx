@@ -8,17 +8,22 @@ import {
   faMagnifyingGlass,
   faPencil,
 } from "@fortawesome/free-solid-svg-icons";
+// import useToken from "../useToken.jsx";
 import "../styles.css";
 
 export function EventTable({ type }) {
   const [data, setData] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [isShown, setIsShown] = useState(false);
+  // const { token } = useToken();
 
   const date = new Date().toJSON().slice(0, 10);
 
   const fetchData = useCallback(async () => {
     try {
+      // const header = {
+      //   Authorization: `Bearer ${token}`,
+      // };
       let response;
       if (!type) {
         response = await fetch("https://certification-api.glitch.me/events");

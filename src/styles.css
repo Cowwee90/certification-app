@@ -44,17 +44,20 @@ body {
   top: 0;
   left: 0;
   padding-top: 50px;
+  align-content: center;
+  /* padding: 50px 30px; */
   color: var(--text-light);
   background-color: rgb(10, 10, 30);
-  height: 100%;
+  height: 100vh;
   width: 250px;
   list-style-type: none;
 
 }
 
+
 .navbar-item {
   display: block;
-  margin: 2px;
+  /* margin: 2px; */
   padding-left: 50px;
   max-width: var(--navbar-width);
   font-size: var(--fs-16);
@@ -104,13 +107,20 @@ body {
   cursor: pointer;
 }
 
-a {
-  color: white;
-}
-.nav-arrow: hover {
+.nav-arrow:hover {
   background-color: var(--accent-dark);
 }
+
+.btn.navbar-btn {
+  margin: 200px 0 0 22px;
+  width: 80%;
+}
+
+
+
 /* MAIN SECTION */
+
+
 
 .main-section {
   display: flex;
@@ -154,6 +164,7 @@ header {
   border-collapse: collapse;
   border-radius: 10px;
   box-shadow: 0px 2px 3px var(--shadow);
+  overflow: hidden;
   /* border: 1px solid black; */
 }
 
@@ -409,10 +420,6 @@ text-align: left;
   background-color: var(--accent);
 }
 
-/* Login */
-.login{
-
-}
 
 /* ELEMENTS */
 
