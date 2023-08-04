@@ -23,6 +23,7 @@
   --fs-36: 3.6rem;
   --fs-24: 2.4rem;
   --fs-16: 1.6rem;
+  --fs-14: 1.4rem;
   --fs-12: 1.2rem;
   box-sizing: border-box;
 
@@ -68,7 +69,47 @@ body {
   color: var(--text-dark);
 }
 
+.navbar-sub-menu {
+  max-width: var(--navbar-width);
+  font-size: var(--fs-14);
+  line-height: 5rem;
+}
 
+.navbar-sub-item {
+  margin: 2px;
+  padding-left: 65px;
+  display: block;
+  color: var(--text-light);
+  list-style: none;
+  text-decoration: none;
+  line-height: 5rem;
+}
+
+.navbar-sub-item:hover {
+  background-color: var(--accent);
+  color: var(--text-dark);
+}
+
+.nav-arrow {
+  display: inline-flex;
+  /* position: absolute;
+  right: 5vw; */
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+a {
+  color: white;
+}
+.nav-arrow: hover {
+  background-color: var(--accent-dark);
+}
 /* MAIN SECTION */
 
 .main-section {
@@ -370,7 +411,7 @@ text-align: left;
 
 /* Login */
 .login{
-  
+
 }
 
 /* ELEMENTS */
