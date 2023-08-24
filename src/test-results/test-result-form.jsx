@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React  from 'react';
 const Draggable = require("react-draggable");
 
 export function TestResultForm({ eventID }) {
@@ -171,6 +172,7 @@ export function TestResultForm({ eventID }) {
       await res.json();
       if (res.status === 201) {
         alert("Test result has been added");
+        setSearchInput(''); setSolves(''); setLevelAchieved(''); setLevelAttempted(''); setResult(''); setPrintedName('');
       } else {
         alert("Some error occured");
       }

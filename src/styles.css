@@ -119,8 +119,12 @@ body {
 
 
 /* MAIN SECTION */
-
-
+.login-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh;
+}
 
 .main-section {
   display: flex;

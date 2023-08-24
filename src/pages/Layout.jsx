@@ -56,7 +56,6 @@ const Layout = () => {
         </Link>
         <LogoutButton></LogoutButton>
       </nav>
-
       <Outlet />
     </>
   );
